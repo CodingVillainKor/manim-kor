@@ -4,7 +4,7 @@ Manim(3Blue1Brown) Korean channel
 
 ## 1. 비교 연산자 버그
 ### 아래 연산 결과는? (Guess the result of below code)<br />
-
+**[[YouTube link](https://youtu.be/DA_wD8PKtAM)]**
 ```python
 False == False in [False]
 ```
