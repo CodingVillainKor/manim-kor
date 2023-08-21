@@ -17,6 +17,7 @@ $ manim comparison_bug.py
 
 ## 2. Radix sort
 ### O(n^2) vs O(nlogn) vs O(n)
+**[[YouTube link](https://www.youtube.com/watch?v=RcGEFETzYjY)]** <br />
 Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/sort)]**
 ```bash
 $ manim bubblesort.py
