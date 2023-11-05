@@ -16,7 +16,7 @@ $ manim comparison_bug.py
 
 
 ## 2. Radix sort
-### $O(n^2)$ vs $O(n\textrm{log}n)$ vs $O(n)$
+$O(n^2)$ &nbsp;&nbsp; vs &nbsp;&nbsp; $O(n\textrm{log}n)$ &nbsp;&nbsp; vs &nbsp;&nbsp; $O(n)$
 **[[YouTube link](https://www.youtube.com/watch?v=RcGEFETzYjY)]** <br />
 Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/sort)]**
 ```bash
@@ -24,4 +24,14 @@ $ manim bubblesort.py
 $ manim mergesort.py
 $ manim plottinggraph.py
 $ manim radixsort.py
+```
+
+## 3. Attention is all you need 1
+" Attention is Weighted sum of values "
+**[[YouTube link](https://www.youtube.com/watch?v=3W8B7ma7oFo)]** <br />
+Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/attention)]**
+```bash
+$ manim innerprd.py
+$ manim main.py
+$ manim xtoexp.py
 ```
