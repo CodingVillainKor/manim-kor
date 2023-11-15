@@ -35,3 +35,13 @@ $ manim innerprd.py
 $ manim main.py
 $ manim xtoexp.py
 ```
+
+## 4. Array Doubling
+" Attention is Weighted sum of values "
+**[[YouTube link](about:blank)]** (TBU) <br />
+Check files in **[[arraydoubling folder](https://github.com/CodingVillainKor/manim-kor/tree/main/arraydoubling)]**
+```bash
+$ manim arraydoubling.py
+$ manim equation.py
+$ manim subfootage.py
+```
