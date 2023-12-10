@@ -37,11 +37,31 @@ $ manim xtoexp.py
 ```
 
 ## 4. Array Doubling
-" Attention is Weighted sum of values "
-**[[YouTube link](about:blank)]** (TBU) <br />
+" Dynamic memory allocation of python list "
+**[[YouTube link](https://www.youtube.com/watch?v=PU_EBlEi5U8)]** <br />
 Check files in **[[arraydoubling folder](https://github.com/CodingVillainKor/manim-kor/tree/main/arraydoubling)]**
 ```bash
 $ manim arraydoubling.py
 $ manim equation.py
 $ manim subfootage.py
+```
+
+
+## 5. Big number Multiplication
+" Karatsuba algorithm "
+**[[YouTube link](https://www.youtube.com/watch?v=S5_9lYB4sAE)]** <br />
+```bash
+$ manim karatsuba.py
+```
+
+## 6. Attention is all you need 2
+" Positional encoding and Self-attention "
+**[[YouTube link](https://www.youtube.com/watch?v=JST1ZumvUQM)]** <br />
+Check files in **[[attention2](https://github.com/CodingVillainKor/manim-kor/tree/main/attention2)]**
+```bash
+$ manim attention.py
+$ manim attention_permute.py
+$ manim encdec.py
+$ manim pos_enc.py
+$ manim pos_enc_permute.py
 ```
