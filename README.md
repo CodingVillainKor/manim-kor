@@ -65,3 +65,12 @@ $ manim encdec.py
 $ manim pos_enc.py
 $ manim pos_enc_permute.py
 ```
+
+## 6. Attention is all you need 3
+" Generation/Training of Transformer, and Masked attention "
+**[[YouTube link](https://www.youtube.com/watch?v=s5_TOQozQ3w)]** <br />
+Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tree/main/attention3)]**
+```bash
+$ manim main.py
+```
+
