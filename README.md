@@ -29,7 +29,7 @@ $ manim radixsort.py
 ## 3. Attention is all you need 1
 " Attention is Weighted sum of values "
 **[[YouTube link](https://www.youtube.com/watch?v=3W8B7ma7oFo)]** <br />
-Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/attention)]**
+Check files in **[[attention folder](https://github.com/CodingVillainKor/manim-kor/tree/main/attention)]**
 ```bash
 $ manim innerprd.py
 $ manim main.py
@@ -66,7 +66,7 @@ $ manim pos_enc.py
 $ manim pos_enc_permute.py
 ```
 
-## 6. Attention is all you need 3
+## 7. Attention is all you need 3
 " Generation/Training of Transformer, and Masked attention "
 **[[YouTube link](https://www.youtube.com/watch?v=s5_TOQozQ3w)]** <br />
 Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tree/main/attention3)]**
@@ -74,7 +74,7 @@ Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tre
 $ manim main.py
 ```
 
-## 7. Short circuit evaluation
+## 8. Short circuit evaluation
 " Short circuit evaluation "
 **[[YouTube link](https://www.youtube.com/watch?v=5dm7GVsZJLw)]** <br />
 Check files in **[[shortcircuit](https://github.com/CodingVillainKor/manim-kor/tree/main/shortcircuit)]**
