@@ -74,3 +74,10 @@ Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tre
 $ manim main.py
 ```
 
+## 7. Short circuit evaluation
+" Short circuit evaluation "
+**[[YouTube link](https://www.youtube.com/watch?v=5dm7GVsZJLw)]** <br />
+Check files in **[[shortcircuit](https://github.com/CodingVillainKor/manim-kor/tree/main/shortcircuit)]**
+```bash
+$ manim main.py
+```
