@@ -1,7 +1,8 @@
 # manim-kor
-Manim(3Blue1Brown) Korean channel <br />
-manimdef.py: 제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다
-
+Manim(3Blue1Brown) Korean channel <br /> 
+```bash
+$ manimdef.py: 제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다
+```
 ## 1. 비교 연산자 버그
 ### 아래 연산 결과는? (Guess the result of below code)<br />
 **[[YouTube link](https://youtu.be/DA_wD8PKtAM)]**
