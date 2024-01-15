@@ -86,7 +86,14 @@ $ manim main.py
 
 ## 9. Hash table
 " Hash table (Data structure) "
-**[[To be updated](about:blank)]** <br />
+**[[YouTube link](https://www.youtube.com/watch?v=dQvwCg2DnxA)]** <br />
 ```bash
 $ manim hash_datastructure.py
+```
+
+## 10. Maze solver using STACK(DFS)
+" Maze solver using Stack (Data structure) "
+**[[YouTube link(TBD)](about:blank)]** <br />
+```bash
+$ manim maze_solver.py
 ```
