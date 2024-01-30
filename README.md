@@ -97,3 +97,10 @@ $ manim hash_datastructure.py
 ```bash
 $ manim maze_solver.py
 ```
+
+## 11. Drunk Passenger Problem
+" Drunk Passenger Problem "
+**[[To be announced](about:blank)]** <br />
+```bash
+$ manim drunkpassenger.py
+```
