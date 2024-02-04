@@ -100,7 +100,7 @@ $ manim maze_solver.py
 
 ## 11. Drunk Passenger Problem
 " Drunk Passenger Problem "
-**[[To be announced](about:blank)]** <br />
+**[[YouTube link](https://www.youtube.com/watch?v=zznpJFhuLTg)]** <br />
 ```bash
 $ manim drunkpassenger.py
 ```
