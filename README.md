@@ -104,3 +104,10 @@ $ manim maze_solver.py
 ```bash
 $ manim drunkpassenger.py
 ```
+
+## 12. 한글 초 / 중 / 종성 분해 알고리즘
+" Hangul unicode order is like stop watch "
+**[[YouTube link](https://www.youtube.com/watch?v=2QtG7QbXOPY)]** <br />
+```bash
+$ manim hangul_stopwatch.py
+```
