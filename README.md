@@ -111,3 +111,26 @@ $ manim drunkpassenger.py
 ```bash
 $ manim hangul_stopwatch.py
 ```
+
+## 13. 생성 모델의 생성은 샘플링
+" Generative model's generation is sampling "
+**[[YouTube link](https://www.youtube.com/watch?v=ENMtsWy52WA)]** <br />
+```bash
+$ manim sampling.py
+```
+
+## 14. 인코더와 디코더
+" Encoding is reducing numbers based on assumption "
+**[[YouTube link](https://www.youtube.com/watch?v=WLCDkfFXbj0)]** <br />
+```bash
+$ cd encoder
+$ manim main.py
+```
+
+## 15. 오토인코더
+" AutoEncoder automatically finds rules in data "
+**[[To be updated](about:blank)]** <br />
+```bash
+$ manim autoencoder.py
+```
+
