@@ -134,3 +134,11 @@ $ manim main.py
 $ manim autoencoder.py
 ```
 
+## 16. 오토인코더
+" When Autoencoder takes adversity, it become VAE, generative model "
+**[[To be updated](about:blank)]** <br />
+준비물: https://github.com/CodingVillainKor/SimpleDeepLearning/blob/main/vae.ipynb 에서 학습시킨 모델 체크포인트 ae.ckpt, aez1.ckpt
+```bash
+$ cd vae
+$ manim main.py
+```
