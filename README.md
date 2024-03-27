@@ -129,7 +129,7 @@ $ manim main.py
 
 ## 15. 오토인코더
 " AutoEncoder automatically finds rules in data "
-**[[To be updated](about:blank)]** <br />
+**[[YouTube link](https://www.youtube.com/watch?v=Byo7yew9-OQ)]** <br />
 ```bash
 $ manim autoencoder.py
 ```
