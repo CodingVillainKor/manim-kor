@@ -142,3 +142,10 @@ Requirements: https://github.com/CodingVillainKor/SimpleDeepLearning/blob/main/v
 $ cd vae
 $ manim main.py
 ```
+
+## 17. Diffusion
+" Deriving diffusion loss is quite convoluted "
+**[[YouTube link(TBD)](about:blank)]** <br />
+```bash
+$ manim diffusion1.py
+```
