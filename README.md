@@ -145,7 +145,7 @@ $ manim main.py
 
 ## 17. Diffusion
 " Deriving diffusion loss is quite convoluted "
-**[[YouTube link(TBD)](about:blank)]** <br />
+**[[YouTube link](https://www.youtube.com/watch?v=RGlwzCWJubs)]** <br />
 ```bash
 $ manim diffusion1.py
 ```
