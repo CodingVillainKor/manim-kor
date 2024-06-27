@@ -158,7 +158,9 @@ class DefaultManimClass(MovingCameraScene):
     @property
     def mouse(self):
         if getattr(self, "_mouse", None) is None:
-            self._mouse = ImageMobject(self._get_mouse_array())
+            mouse = ImageMobject(self._get_mouse_array())
+            dummy = ImageMobject(self._get_mouse_array()).next_to(mouse, LEFT+UP, buff=0).set_opacity(0)
+            self._mouse = Group(mouse, dummy)
         return self._mouse
     
     @staticmethod
