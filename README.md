@@ -149,3 +149,12 @@ $ manim main.py
 ```bash
 $ manim diffusion1.py
 ```
+
+## 18. VQVAE1
+Vector quantization
+**[[YouTube link](https://youtu.be/mypBS6tPPUA)]** <br />
+```bash
+$ cd vqvae1
+$ manim main.py
+```
+
