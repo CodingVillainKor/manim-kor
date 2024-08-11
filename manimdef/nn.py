@@ -87,5 +87,5 @@ def propagation(mlp, indices, scene_instance=None, run_time=0.3):
 def forward_prop(mlp, scene_instance=None, run_time=0.3):
     return propagation(mlp, range(len(mlp)), scene_instance, run_time)
 
-def backward_prop(mlp, scene_instance=None):
+def backward_prop(mlp, scene_instance=None, run_time=0.3):
     return propagation(mlp, reversed(range(len(mlp))), scene_instance, run_time)
