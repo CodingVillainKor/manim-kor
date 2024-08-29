@@ -1,4 +1,3 @@
-from functools import wraps
 from manim import *
 
 MOUSE = [
@@ -89,7 +88,7 @@ class PythonCode(Code):
         idx -= (len(self.indentation_chars)-1) * indentation_level
         return idx, idx+len(text)
     
-    def text_slice(self, line_no:int, text:str, nth:int=1):
+    def text_slice(self, line_no:int, text:str, nth:int=1) -> Mobject:
         idx_start, idx_end = self.find_text(line_no, text, nth)
         return self.code[line_no-1][idx_start:idx_end]
     
@@ -162,6 +161,9 @@ class DefaultManimClass(MovingCameraScene):
 
     def to_front(self, *mobjects):
         self.add_foreground_mobjects(*mobjects)
+
+    def playw_return(self, *args, **kwargs):
+        self.playw(*args, rate_func=rate_functions.there_and_back, **kwargs)
 
     @property
     def mouse(self):
