@@ -164,3 +164,10 @@ Neural ODE1
 ```bash
 $ manim node1.py
 ```
+
+## 20. Neural ODE3
+Neural ODE3
+**[[YouTube link](https://www.youtube.com/watch?v=UZu2ls-HUlk)]** <br />
+```bash
+$ manim node3.py
+```
