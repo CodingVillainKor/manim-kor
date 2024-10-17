@@ -160,7 +160,7 @@ $ manim main.py
 
 ## 19. Neural ODE1
 Neural ODE1
-**[[YouTube link](about:blank)]** <br />
+**[[YouTube link](https://www.youtube.com/watch?v=afQICWJmpu0)]** <br />
 ```bash
 $ manim node1.py
 ```
