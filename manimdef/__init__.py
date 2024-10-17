@@ -1,4 +1,5 @@
 from manim import *
+from functools import wraps
 
 MOUSE = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -88,9 +89,12 @@ class PythonCode(Code):
         idx -= (len(self.indentation_chars)-1) * indentation_level
         return idx, idx+len(text)
     
-    def text_slice(self, line_no:int, text:str, nth:int=1) -> Mobject:
+    def text_slice(self, line_no:int, text:str, nth:int=1, exclusive=False) -> Mobject:
         idx_start, idx_end = self.find_text(line_no, text, nth)
-        return self.code[line_no-1][idx_start:idx_end]
+        if exclusive:
+            return VGroup(self.code[line_no-1][:idx_start], self.code[line_no-1][idx_end:])
+        else:
+            return self.code[line_no-1][idx_start:idx_end]
     
     def highlight(self, line_no:int, text:str=None, nth:int=1, 
                   anim=Write, color="#FFFF00", anim_out=FadeOut):
@@ -99,6 +103,14 @@ class PythonCode(Code):
         else:
             target = self.text_slice(line_no, text, nth).copy().set_color(color)
         return anim(target), anim_out(target)
+
+    def __call__(self, *line) -> VMobject:
+        if len(line) == 1:
+            return self.code[line[0]-1]
+        elif len(line) == 2:
+            return self.code[line[0]-1:line[1]]
+        else:
+            raise ValueError(f"The number of argument line should be 1 or 2, but {len(line)} given")
 
 class NumText(Text):
     def __init__(self, text, **kwargs):
@@ -149,7 +161,8 @@ class Mouse(ImageMobject):
 class DefaultManimClass(MovingCameraScene):
     def construct(self):
         pass
-
+    
+    @wraps(MovingCameraScene.play)
     def playw(self, *args, wait=1, **kwargs):
         self.play(*args, **kwargs)
         self.wait(wait)
@@ -164,6 +177,13 @@ class DefaultManimClass(MovingCameraScene):
 
     def playw_return(self, *args, **kwargs):
         self.playw(*args, rate_func=rate_functions.there_and_back, **kwargs)
+
+    def play_camera(self, to=ORIGIN, scale=1, **play_kwargs):
+        self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
+
+    @property
+    def cf(self):
+        return self.camera.frame
 
     @property
     def mouse(self):
