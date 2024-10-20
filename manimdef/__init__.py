@@ -182,7 +182,7 @@ class DefaultManimClass(MovingCameraScene):
         self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
 
     @property
-    def cf(self):
+    def cf(self) -> VMobject:
         return self.camera.frame
 
     @property
@@ -209,3 +209,19 @@ class SurroundingRect(Rectangle):
             .stretch_to_fit_height(mobject.height + buf_height)\
             .stretch_to_fit_width(mobject.width + buf_width)
         return self
+    
+class Chainer(VGroup):
+    _chain_class = {
+        "plain": Line,
+        "dashed": DashedLine,
+        "arrow": Arrow
+    }
+    def __init__(self, *args, chain_type="plain", chain_kwargs={"buff":0}, **kwargs):
+        super().__init__(**kwargs)
+        if len(args) <= 1:
+            raise ValueError("The number of args should be larger than one.")
+        
+        line_cls = self._chain_class.get(chain_type, "plain")
+        for now_, next_ in zip(args[:-1], args[1:]):
+            self.add(line_cls(now_, next_, **chain_kwargs))
+            
