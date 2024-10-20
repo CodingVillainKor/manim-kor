@@ -1,5 +1,5 @@
-from functools import wraps
 from manim import *
+from functools import wraps
 
 MOUSE = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -89,9 +89,12 @@ class PythonCode(Code):
         idx -= (len(self.indentation_chars)-1) * indentation_level
         return idx, idx+len(text)
     
-    def text_slice(self, line_no:int, text:str, nth:int=1):
+    def text_slice(self, line_no:int, text:str, nth:int=1, exclusive=False) -> Mobject:
         idx_start, idx_end = self.find_text(line_no, text, nth)
-        return self.code[line_no-1][idx_start:idx_end]
+        if exclusive:
+            return VGroup(self.code[line_no-1][:idx_start], self.code[line_no-1][idx_end:])
+        else:
+            return self.code[line_no-1][idx_start:idx_end]
     
     def highlight(self, line_no:int, text:str=None, nth:int=1, 
                   anim=Write, color="#FFFF00", anim_out=FadeOut):
@@ -100,6 +103,14 @@ class PythonCode(Code):
         else:
             target = self.text_slice(line_no, text, nth).copy().set_color(color)
         return anim(target), anim_out(target)
+
+    def __call__(self, *line) -> VMobject:
+        if len(line) == 1:
+            return self.code[line[0]-1]
+        elif len(line) == 2:
+            return self.code[line[0]-1:line[1]]
+        else:
+            raise ValueError(f"The number of argument line should be 1 or 2, but {len(line)} given")
 
 class NumText(Text):
     def __init__(self, text, **kwargs):
@@ -139,10 +150,19 @@ class CodeText(Text):
         kwargs["font"] = kwargs.pop("font", "Consolas")
         super().__init__(text, **kwargs)
 
+class Mouse(ImageMobject):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    
+    def on(self, target):
+        self.move_to(target)
+        self.shift(RIGHT*0.1 + DOWN*0.2)
+
 class DefaultManimClass(MovingCameraScene):
     def construct(self):
         pass
-
+    
+    @wraps(MovingCameraScene.play)
     def playw(self, *args, wait=1, **kwargs):
         self.play(*args, **kwargs)
         self.wait(wait)
@@ -155,12 +175,20 @@ class DefaultManimClass(MovingCameraScene):
     def to_front(self, *mobjects):
         self.add_foreground_mobjects(*mobjects)
 
+    def playw_return(self, *args, **kwargs):
+        self.playw(*args, rate_func=rate_functions.there_and_back, **kwargs)
+
+    def play_camera(self, to=ORIGIN, scale=1, **play_kwargs):
+        self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
+
+    @property
+    def cf(self) -> VMobject:
+        return self.camera.frame
+
     @property
     def mouse(self):
         if getattr(self, "_mouse", None) is None:
-            mouse = ImageMobject(self._get_mouse_array())
-            dummy = ImageMobject(self._get_mouse_array()).next_to(mouse, LEFT+UP, buff=0).set_opacity(0)
-            self._mouse = Group(mouse, dummy)
+            self._mouse = Mouse(self._get_mouse_array())
         return self._mouse
     
     @staticmethod
@@ -181,3 +209,19 @@ class SurroundingRect(Rectangle):
             .stretch_to_fit_height(mobject.height + buf_height)\
             .stretch_to_fit_width(mobject.width + buf_width)
         return self
+    
+class Chainer(VGroup):
+    _chain_class = {
+        "plain": Line,
+        "dashed": DashedLine,
+        "arrow": Arrow
+    }
+    def __init__(self, *args, chain_type="plain", chain_kwargs={"buff":0}, **kwargs):
+        super().__init__(**kwargs)
+        if len(args) <= 1:
+            raise ValueError("The number of args should be larger than one.")
+        
+        line_cls = self._chain_class.get(chain_type, "plain")
+        for now_, next_ in zip(args[:-1], args[1:]):
+            self.add(line_cls(now_, next_, **chain_kwargs))
+            
