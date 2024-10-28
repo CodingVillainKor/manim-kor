@@ -167,6 +167,11 @@ class DefaultManimClass(MovingCameraScene):
         self.play(*args, **kwargs)
         self.wait(wait)
 
+    @wraps(MovingCameraScene.wait)
+    def addw(self, *args, wait=1, **kwargs):
+        self.add(*args, **kwargs)
+        self.wait(wait)
+
     def clear(self):
         for m in self.mobjects:
             m.clear_updaters()
