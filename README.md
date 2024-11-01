@@ -171,3 +171,10 @@ Neural ODE3
 ```bash
 $ manim node3.py
 ```
+
+## 21. Interior Goat Grazing Problem
+Explaining interior goat grazing
+**[[YouTube link](https://www.youtube.com/watch?v=feeIKrSsksQ)]** <br />
+```bash
+$ manim goatgrazing.py
+```
