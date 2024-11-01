@@ -176,5 +176,6 @@ $ manim node3.py
 Explaining interior goat grazing
 **[[YouTube link](https://www.youtube.com/watch?v=feeIKrSsksQ)]** <br />
 ```bash
-$ manim goatgrazing.py
+$ cd goatgrazing
+$ manim main.py
 ```
