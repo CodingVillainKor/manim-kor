@@ -179,3 +179,11 @@ Explaining interior goat grazing
 $ cd goatgrazing
 $ manim main.py
 ```
+
+## 22. Neural ODE4
+Neural ODE4
+**[[YouTube link]](https://youtu.be/0IjAHl_DV98)** <br />
+```bash
+$ cd node4
+$ manim main.py
+```
