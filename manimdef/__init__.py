@@ -229,4 +229,19 @@ class Chainer(VGroup):
         line_cls = self._chain_class.get(chain_type, "plain")
         for now_, next_ in zip(args[:-1], args[1:]):
             self.add(line_cls(now_, next_, **chain_kwargs))
-            
+
+class BrokenLine(VGroup):
+    def __init__(self, *pos, arrow=False, **kwargs):
+        assert len(pos) > 2
+        super().__init__()
+        starts = pos[:-1]
+        ends = pos[1:]
+        for i, (s, e) in enumerate(zip(starts, ends)):
+            line_kwargs = kwargs.copy()
+            if i != len(starts)-1:
+                if arrow and "max_tip_length_to_length_ratio" in kwargs:
+                    line_kwargs.pop("max_tip_length_to_length_ratio")
+                self.add(Line(s, e, **line_kwargs))
+            else:
+                L = Arrow if arrow else Line
+                self.add(L(s, e, buff=0, **line_kwargs))
