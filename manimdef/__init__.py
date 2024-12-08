@@ -203,6 +203,55 @@ class DefaultManimClass(MovingCameraScene):
         mouse[..., -1] = (mouse[..., 0] != 0) * 255
         return mouse
 
+class DefaultManimClass3D(ThreeDScene):
+    def construct(self):
+        pass
+    
+    @wraps(ThreeDScene.play)
+    def playw(self, *args, wait=1, **kwargs):
+        self.play(*args, **kwargs)
+        self.wait(wait)
+
+    @wraps(ThreeDScene.wait)
+    def addw(self, *args, wait=1, **kwargs):
+        self.add(*args, **kwargs)
+        self.wait(wait)
+
+    def clear(self):
+        for m in self.mobjects:
+            m.clear_updaters()
+        self.playw(*[FadeOut(mob) for mob in self.mobjects])
+
+    def to_front(self, *mobjects):
+        self.add_foreground_mobjects(*mobjects)
+
+    def playw_return(self, *args, **kwargs):
+        self.playw(*args, rate_func=rate_functions.there_and_back, **kwargs)
+
+    def play_camera(self, to=ORIGIN, scale=1, **play_kwargs):
+        self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
+
+    @wraps(ThreeDScene.set_camera_orientation)
+    def rotate_camera(self, *args, **kwargs):
+        return self.set_camera_orientation(*args, **kwargs)
+
+    @property
+    def cf(self) -> VMobject:
+        return self.camera.frame
+
+    @property
+    def mouse(self):
+        if getattr(self, "_mouse", None) is None:
+            self._mouse = Mouse(self._get_mouse_array())
+        return self._mouse
+    
+    @staticmethod
+    def _get_mouse_array():
+        mouse = MOUSE.copy()
+        mouse = np.array(mouse)[..., None].repeat(4, -1)
+        mouse[..., -1] = (mouse[..., 0] != 0) * 255
+        return mouse
+
 _surround_buf = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER
 
 class SurroundingRect(Rectangle):
@@ -218,7 +267,7 @@ class SurroundingRect(Rectangle):
 class Chainer(VGroup):
     _chain_class = {
         "plain": Line,
-        "dashed": DashedLine,
+        "dashedline": DashedLine,
         "arrow": Arrow
     }
     def __init__(self, *args, chain_type="plain", chain_kwargs={"buff":0}, **kwargs):
