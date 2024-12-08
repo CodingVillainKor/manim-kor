@@ -187,3 +187,10 @@ Neural ODE4
 $ cd node4
 $ manim main.py
 ```
+
+## 23. nn.Linear
+pytorch - nn.Linear 설명
+[[YouTube link](https://www.youtube.com/watch?v=zj8_UbOAKkk)]
+```bash
+$ manim nnLinear.py
+```
