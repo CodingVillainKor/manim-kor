@@ -190,7 +190,16 @@ $ manim main.py
 
 ## 23. nn.Linear
 pytorch - nn.Linear 설명
-[[YouTube link](https://www.youtube.com/watch?v=zj8_UbOAKkk)]
+**[[YouTube link](https://www.youtube.com/watch?v=zj8_UbOAKkk)]** <br />
 ```bash
 $ manim nnLinear.py
 ```
+
+## 24. Flow matching 1
+Flow matching 1 : Vector field?
+**[[YouTube link]](https://www.youtube.com/watch?v=1TCy3sXDP_Q)**  <br />
+```bash
+$ manim flowmatching1.py
+```
+
+
