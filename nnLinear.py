@@ -346,7 +346,7 @@ class LinearTensor(DefaultManimClass3D):
         tensor_shape = 6, 7
         tilt_degree = 60 * DEGREES
         self.set_camera_orientation(zoom=1)
-        self.rotate_camera(phi=tilt_degree)
+        self.set_camera(phi=tilt_degree)
 
         def gen_x(in_dim):
             x_list = [[MathTex(f"x_{{{i}}}")] for i in range(in_dim)]
