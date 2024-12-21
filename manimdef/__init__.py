@@ -232,7 +232,7 @@ class DefaultManimClass3D(ThreeDScene):
         self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
 
     @wraps(ThreeDScene.set_camera_orientation)
-    def rotate_camera(self, *args, **kwargs):
+    def set_camera(self, *args, **kwargs):
         return self.set_camera_orientation(*args, **kwargs)
 
     @property
