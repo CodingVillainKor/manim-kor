@@ -237,7 +237,7 @@ class DefaultManimClass3D(ThreeDScene):
 
     @property
     def cf(self) -> VMobject:
-        return self.camera.frame
+        return self.renderer.camera._frame_center
 
     @property
     def mouse(self):
