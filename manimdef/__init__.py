@@ -158,6 +158,14 @@ class Mouse(ImageMobject):
         self.move_to(target)
         self.shift(RIGHT*0.1 + DOWN*0.2)
 
+class ListText(VGroup):
+    def __init__(self, *texts, font_size=48, color=WHITE, arrange=RIGHT, **kwargs):
+        super().__init__(**kwargs)
+        t = VGroup(*[text if isinstance(text, Mobject) else Text(str(text), font_size=font_size, color=color, **kwargs) for text in texts]).arrange(arrange)
+        bracket0 = Text("[", font_size=font_size, color=color, **kwargs).next_to(t[0], LEFT)
+        bracket1 = Text("]", font_size=font_size, color=color, **kwargs).next_to(t[-1], RIGHT)
+        self.add(bracket0, *t, bracket1)
+
 class DefaultManimClass(MovingCameraScene):
     def construct(self):
         pass
