@@ -211,6 +211,30 @@ class DefaultManimClass(MovingCameraScene):
         mouse[..., -1] = (mouse[..., 0] != 0) * 255
         return mouse
 
+class File(VGroup):
+    def __init__(self, size=2):
+        super().__init__()
+        nump = NumberPlane()
+        ul = (-size/2, size/2*16/9)
+        ur = (size/2, size/2*16/9)
+        dl = (-size/2, -size/2*16/9)
+        dr = (size/2, -size/2*16/9)
+        
+        rect_coords = [nump.c2p(*item) for item in [ul, ur, dr, dl]]
+        paper = Polygon(*rect_coords, stroke_width=3*size, color=GREY_C).set_fill(WHITE, opacity=1)
+        
+        cut_ratio = 0.3
+        fold_top = (ul[0] + cut_ratio*size, ul[1])
+        fold_left = (ul[0], ul[1]-cut_ratio*size)
+        fold_in = (fold_top[0], fold_left[1])
+        fold_out_coords = [nump.c2p(*item) for item in [ul, fold_top, fold_left]]
+        folded_out = Polygon(*fold_out_coords)
+        fold_in_coords = [nump.c2p(*item) for item in [fold_top, fold_in, fold_left]]
+        folded_in = Polygon(*fold_in_coords, stroke_width=3*size, color=GREY_C).set_fill(GREY_A, opacity=1)
+        cut = Difference(paper, folded_out).set_fill(WHITE, opacity=1)
+        self.add(cut)
+        self.add(folded_in)
+
 class DefaultManimClass3D(ThreeDScene):
     def construct(self):
         pass
