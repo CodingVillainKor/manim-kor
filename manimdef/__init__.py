@@ -64,7 +64,7 @@ class PythonCode(Code):
     def __init__(self, filename, **kwargs):
         kwargs["tab_width"] = kwargs.pop("tab_width", 4)
         kwargs["language"] = kwargs.pop("language", "python")
-        kwargs["line_spacing"] = kwargs.pop("line_spacing", 1)
+        kwargs["line_spacing"] = kwargs.pop("line_spacing", 0.6)
         kwargs["background"] = kwargs.pop("background", "window")
         kwargs["font"] = kwargs.pop("font", "Consolas")
         super().__init__(filename, **kwargs)
