@@ -265,7 +265,7 @@ class File(VGroup):
     def __init__(self, size=2):
         super().__init__()
         nump = NumberPlane()
-        ratio = 16/9/1.3
+        ratio = 16/9/1.4
         ul = (-size/2, size/2*ratio)
         ur = (size/2, size/2*ratio)
         dl = (-size/2, -size/2*ratio)
@@ -289,7 +289,7 @@ class File(VGroup):
 class Folder(VGroup):
     def __init__(self, size=3):
         super().__init__()
-        h, w = size * 9 / 16, size
+        h, w = size * 9 / 16 * 1.3, size
         folder = RoundedRectangle(size*0.05, height=h, width=w, color=YELLOW_B).set_fill(
             YELLOW_D, opacity=1
         )
@@ -297,12 +297,42 @@ class Folder(VGroup):
         bh, bw = h*ratio, w*ratio
         back = RoundedRectangle(size*0.05, height=bh, width=bw, color=YELLOW_B).set_fill(
             YELLOW_E, opacity=1
-        ).set_z_index(-0.01).align_to(folder, LEFT).align_to(folder, UP).shift(UP*size*0.12)
+        ).set_z_index(-0.01).align_to(folder, LEFT).align_to(folder, UP).shift(UP*size*0.15)
         self.add(folder, back)
 
 class FileSystem(VGroup):
-    def __init__(self):
-        raise NotImplementedError() # TODO
+    def __init__(self, folders=[], files=[], tag: str | None = None, buff=0.25):
+        super().__init__()
+        folders_list = sorted(folders)
+        files_list = sorted(files)
+
+        self._folders = VGroup(*[FolderIcon(f) for f in folders_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
+        self._files = VGroup(*[FileIcon(f) for f in files_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
+        self.add(self._folders, self._files)
+        self.arrange(DOWN, buff=buff, aligned_edge=LEFT)
+        self._frame = RoundedRectangle(0.2, height=self.height, width=self.width).surround(self, buff=1.25)
+        self.add(self._frame)
+        if tag is not None:
+            self._tag = Text(tag, font="Consolas", font_size=24).next_to(self._frame, UP, buff=0.05).align_to(self._frame, LEFT)
+            self.add(self._tag)
+        else:
+            self._tag = None
+    
+    @property
+    def folders(self):
+        return self._folders
+    
+    @property
+    def files(self):
+        return self._files
+    
+    @property
+    def frame(self):
+        return self._frame
+    
+    @property
+    def tag(self):
+        return self._tag
 
 class FolderIcon(VGroup):
     def __init__(self, text:str):
@@ -323,10 +353,10 @@ class FolderIcon(VGroup):
 class FileIcon(VGroup):
     def __init__(self, text:str):
         super().__init__()
-        self._icon = File(size=0.3)
+        self._icon = File(size=0.4)
         self._text = Text(text, font="Consolas", font_size=24)
         self.add(self._icon, self._text)
-        self.arrange(RIGHT, buff=0.15)
+        self.arrange(RIGHT, buff=0.25)
     
     @property
     def icon(self):
