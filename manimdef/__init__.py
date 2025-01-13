@@ -235,6 +235,19 @@ class File(VGroup):
         self.add(cut)
         self.add(folded_in)
 
+class Folder(VGroup):
+    def __init__(self, size=3):
+        h, w = size * 9 / 16, size
+        folder = RoundedRectangle(0.1, height=h, width=w, color=YELLOW_B).set_fill(
+            YELLOW_D, opacity=1
+        )
+        ratio = 0.4
+        bh, bw = h*ratio, w*ratio
+        back = RoundedRectangle(0.1, height=bh, width=bw, color=YELLOW_B).set_fill(
+            YELLOW_E, opacity=1
+        ).set_z_index(-0.01).align_to(folder, LEFT).align_to(folder, UP).shift(UP*size*0.12)
+        self.add(folder, back)
+
 class DefaultManimClass3D(ThreeDScene):
     def construct(self):
         pass
