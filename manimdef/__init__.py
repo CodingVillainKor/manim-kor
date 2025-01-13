@@ -68,6 +68,7 @@ class PythonCode(Code):
         kwargs["background"] = kwargs.pop("background", "window")
         kwargs["font"] = kwargs.pop("font", "Consolas")
         super().__init__(filename, **kwargs)
+        self.frame.set_opacity(0.3)
 
     @property
     def frame(self):
