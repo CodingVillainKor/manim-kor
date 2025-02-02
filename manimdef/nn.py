@@ -1,6 +1,11 @@
 from manim import *
 import numpy as np
 
+_fn_dict = {
+    "tanh": np.tanh,
+    "relu": lambda x: max(x, 0),
+}
+
 def Linear(in_channels: int, out_channels: int):
     in_layer = VGroup(*[Circle(radius=0.2, color=BLUE) for i in range(in_channels)]).arrange(DOWN, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*0.4)
     out_layer = VGroup(*[Circle(radius=0.2, color=GREEN) for i in range(out_channels)]).arrange(DOWN, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*0.4)
@@ -16,13 +21,13 @@ def Linear(in_channels: int, out_channels: int):
 
     return VGroup(in_layer, weights, out_layer)
 
-def MLP(*dims):
+def MLP(*dims, layer_distance=3):
     layers = []
     for d in dims:
         color_layer = random_color()
         layer = VGroup(*[Circle(radius=0.2, color=color_layer) for i in range(d)]).arrange(DOWN, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*0.4)
         layers.append(layer)
-    layers = VGroup(*layers).arrange(RIGHT, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*3)
+    layers = VGroup(*layers).arrange(RIGHT, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*layer_distance)
 
     weights = []
     for k, (d1, d2) in enumerate(zip(dims[:-1], dims[1:])):
@@ -57,9 +62,13 @@ class RNN(VGroup):
         super().__init__()
 
 class Tensor(VGroup):
-    def __init__(self, dim: int, arrange=DOWN, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*0.4):
+    def __init__(self, dim: int, shape="circle", arrange=DOWN, buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER*0.4):
         super().__init__()
-        self.add(*[Circle(radius=0.2, stroke_width=DEFAULT_STROKE_WIDTH*0.4, color=GREY).set_fill(color=random_color(), opacity=1) for i in range(dim)]).arrange(arrange, buff=buff)
+        if shape == "circle":
+            fig = lambda: Circle(radius=0.2, stroke_width=DEFAULT_STROKE_WIDTH*0.4, color=GREY)
+        elif shape == "square":
+            fig = lambda: Square(side_length=0.4, stroke_width=DEFAULT_STROKE_WIDTH*0.4, color=GREY)
+        self.add(*[fig().set_fill(color=random_color(), opacity=1) for i in range(dim)]).arrange(arrange, buff=buff)
     
     def to_numbers(self, numbers=None, font_size=18):
         if numbers is None:
@@ -89,3 +98,15 @@ def forward_prop(mlp, scene_instance=None, run_time=0.3):
 
 def backward_prop(mlp, scene_instance=None, run_time=0.3):
     return propagation(mlp, reversed(range(len(mlp))), scene_instance, run_time)
+
+
+def Activation(function="tanh"):
+    fn = _fn_dict[function]
+    nump = NumberPlane(x_range=(-1.5, 1.5), y_range=(-1.5, 1.5), x_length=0.35, y_length=0.35)
+    if function=="relu":
+        plot = nump.plot(fn, x_range=(-1.5, 1.2), stroke_width=2)
+    else:
+        plot = nump.plot(fn, stroke_width=2)
+    c = Circle(radius=0.2, stroke_width=3)
+    return VGroup(c, plot)
+
