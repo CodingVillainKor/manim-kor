@@ -240,6 +240,26 @@ class DefaultManimClass3D(ThreeDScene):
     def play_camera(self, to=ORIGIN, scale=1, **play_kwargs):
         self.playw(self.camera.frame.animate.move_to(to).scale(scale), **play_kwargs)
 
+    def tilt_camera_horizontal(self, degree, zoom=1.0):
+        phi_tilt_degree = degree * DEGREES
+        theta_tilt_degree = 90 * DEGREES
+        gamma_tilt_degree = -90 * DEGREES
+
+        self.set_camera(
+            phi=phi_tilt_degree,
+            theta=-90 * DEGREES - theta_tilt_degree,
+            gamma=gamma_tilt_degree,
+            zoom=zoom,
+        )
+
+    def tilt_camera_vertical(self, zoom=1.0):
+        phi_tilt_degree = 60 * DEGREES
+
+        self.set_camera(
+            phi=phi_tilt_degree,
+            zoom=zoom,
+        )
+
     @wraps(ThreeDScene.set_camera_orientation)
     def set_camera(self, *args, **kwargs):
         return self.set_camera_orientation(*args, **kwargs)
@@ -310,7 +330,7 @@ class FileSystem(VGroup):
         self._files = VGroup(*[FileIcon(f) for f in files_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
         self.add(self._folders, self._files)
         self.arrange(DOWN, buff=buff, aligned_edge=LEFT)
-        self._frame = RoundedRectangle(0.2, height=self.height, width=self.width).surround(self, buff=1.25)
+        self._frame = RoundedRectangle(0.2, height=self.height, width=self.width, color=GREY_C).surround(self, buff=1.25)
         self.add(self._frame)
         if tag is not None:
             self._tag = Text(tag, font="Consolas", font_size=24).next_to(self._frame, UP, buff=0.05).align_to(self._frame, LEFT)
@@ -409,3 +429,5 @@ class BrokenLine(VGroup):
             else:
                 L = Arrow if arrow else Line
                 self.add(L(s, e, buff=0, **line_kwargs))
+
+MINT = ManimColor("#00DDAA")
