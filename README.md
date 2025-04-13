@@ -217,3 +217,12 @@ Pytorch의 layernorm 설명이 헷갈림
 ```bash
 $ manim layernorm.py
 ```
+
+
+## 26. Inheriting nn.Conv
+nn.Module이 아니라 nn.Conv를 상속하는 이유
+[[YouTube link]](https://www.youtube.com/watch?v=CibhSgvTFGE) <br />
+```bash
+$ cd convbld
+$ manim convbld.py
+```
