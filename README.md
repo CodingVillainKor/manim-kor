@@ -211,4 +211,9 @@ Flow matching 1 : Vector field?
 $ manim flowmatching1.py
 ```
 
-
+## 25. Layer normailization
+Pytorch의 layernorm 설명이 헷갈림
+[[YouTube link]](https://www.youtube.com/watch?v=r7DRvHmHcNU) <br />
+```bash
+$ manim layernorm.py
+```
