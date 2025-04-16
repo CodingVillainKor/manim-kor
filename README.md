@@ -226,3 +226,11 @@ nn.Module이 아니라 nn.Conv를 상속하는 이유
 $ cd convbld
 $ manim convbld.py
 ```
+
+## 27. git checkout
+`git checkout <commit-hash>` 케이스만
+[[YouTube link]](https://www.youtube.com/watch?v=kerEZBJyzEM) <br />
+```bash
+$ cd gitcheckout
+$ manim main.py
+```
