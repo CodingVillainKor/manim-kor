@@ -2,11 +2,11 @@
 Manim(3Blue1Brown) Korean channel <br /> 
 
 ### manimdef.py 파일?
-~~제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다~~
+~~제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다~~ <br />
 (25.04.19 - `manimdef.py`는 더 이상 사용되지 않습니다
 
 ### raenim
-25.04.19 - manim 기반 utility tool  
+manim 기반 utility tool  
 [링크](https://github.com/CodingVillainKor/raenim)에서 설치하신 후 아래와 같이 import해서 사용하실 수 있습니다
 ```python
 from raenim import *
