@@ -1,0 +1,11 @@
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# byproduct by manim
+media/
