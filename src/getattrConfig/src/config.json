@@ -1,0 +1,14 @@
+{
+    "data": {
+        "name": "MNIST",
+        "path": "/data/mnist"
+    },
+    "model": {
+        "name": "ConvNet",
+        "dim": 256
+    },
+    "train": {
+        "optim_name": "Adam",
+        "lr": 0.001
+    }
+}
