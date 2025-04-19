@@ -1,5 +1,4 @@
-class Dummy:
+class obj:
     pass
 
-obj = Dummy()
-print(getattr(obj, "att"))
+print(getattr(obj, "att", "piui")) # obj.att
