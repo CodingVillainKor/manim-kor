@@ -2,16 +2,21 @@
 Manim(3Blue1Brown) Korean channel <br /> 
 
 ### manimdef.py 파일?
-제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다
+~~제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다~~
+(25.04.19 - `manimdef.py`는 더 이상 사용되지 않습니다
 
-### raenim?
-2월부터 raenim이라는 customized source를 만들었습니다.
+### raenim
+25.04.19 - manim 기반 utility tool  
 [링크](https://github.com/CodingVillainKor/raenim)에서 설치하신 후 아래와 같이 import해서 사용하실 수 있습니다
 ```python
 from raenim import *
 
 # Scene2D, Scene3D, PythonCode, MINT, ...
 ``` 
+
+### How to start
+TBU
+
 
 ## 1. 비교 연산자 버그
 ### 아래 연산 결과는? (Guess the result of below code)<br />
@@ -20,8 +25,8 @@ from raenim import *
 False == False in [False]
 ```
 
-### manim 영상 렌더링 방법: (How to render manim)<br />
 ```bash
+$ cd src
 $ manim comparison_bug.py
 ```
 
@@ -31,6 +36,7 @@ $O(n^2)$ &nbsp;&nbsp; vs &nbsp;&nbsp; $O(n\textrm{log}n)$ &nbsp;&nbsp; vs &nbsp;
 **[[YouTube link](https://www.youtube.com/watch?v=RcGEFETzYjY)]** <br />
 Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/sort)]**
 ```bash
+$ cd src
 $ manim bubblesort.py
 $ manim mergesort.py
 $ manim plottinggraph.py
@@ -42,6 +48,7 @@ $ manim radixsort.py
 **[[YouTube link](https://www.youtube.com/watch?v=3W8B7ma7oFo)]** <br />
 Check files in **[[attention folder](https://github.com/CodingVillainKor/manim-kor/tree/main/attention)]**
 ```bash
+$ cd src
 $ manim innerprd.py
 $ manim main.py
 $ manim xtoexp.py
@@ -52,6 +59,7 @@ $ manim xtoexp.py
 **[[YouTube link](https://www.youtube.com/watch?v=PU_EBlEi5U8)]** <br />
 Check files in **[[arraydoubling folder](https://github.com/CodingVillainKor/manim-kor/tree/main/arraydoubling)]**
 ```bash
+$ cd src
 $ manim arraydoubling.py
 $ manim equation.py
 $ manim subfootage.py
@@ -62,6 +70,7 @@ $ manim subfootage.py
 " Karatsuba algorithm "
 **[[YouTube link](https://www.youtube.com/watch?v=S5_9lYB4sAE)]** <br />
 ```bash
+$ cd src
 $ manim karatsuba.py
 ```
 
@@ -70,6 +79,7 @@ $ manim karatsuba.py
 **[[YouTube link](https://www.youtube.com/watch?v=JST1ZumvUQM)]** <br />
 Check files in **[[attention2](https://github.com/CodingVillainKor/manim-kor/tree/main/attention2)]**
 ```bash
+$ cd src
 $ manim attention.py
 $ manim attention_permute.py
 $ manim encdec.py
@@ -82,6 +92,7 @@ $ manim pos_enc_permute.py
 **[[YouTube link](https://www.youtube.com/watch?v=s5_TOQozQ3w)]** <br />
 Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tree/main/attention3)]**
 ```bash
+$ cd src
 $ manim main.py
 ```
 
@@ -90,6 +101,7 @@ $ manim main.py
 **[[YouTube link](https://www.youtube.com/watch?v=5dm7GVsZJLw)]** <br />
 Check files in **[[shortcircuit](https://github.com/CodingVillainKor/manim-kor/tree/main/shortcircuit)]**
 ```bash
+$ cd src
 $ manim main.py
 ```
 
@@ -97,6 +109,7 @@ $ manim main.py
 " Hash table (Data structure) "
 **[[YouTube link](https://www.youtube.com/watch?v=dQvwCg2DnxA)]** <br />
 ```bash
+$ cd src
 $ manim hash_datastructure.py
 ```
 
@@ -104,6 +117,7 @@ $ manim hash_datastructure.py
 " Maze solver using Stack (Data structure) "
 **[[YouTube link](https://www.youtube.com/watch?v=3fzqQOM4gSs)]** <br />
 ```bash
+$ cd src
 $ manim maze_solver.py
 ```
 
@@ -111,6 +125,7 @@ $ manim maze_solver.py
 " Drunk Passenger Problem "
 **[[YouTube link](https://www.youtube.com/watch?v=zznpJFhuLTg)]** <br />
 ```bash
+$ cd src
 $ manim drunkpassenger.py
 ```
 
@@ -118,6 +133,7 @@ $ manim drunkpassenger.py
 " Hangul unicode order is like stop watch "
 **[[YouTube link](https://www.youtube.com/watch?v=2QtG7QbXOPY)]** <br />
 ```bash
+$ cd src
 $ manim hangul_stopwatch.py
 ```
 
@@ -125,6 +141,7 @@ $ manim hangul_stopwatch.py
 " Generative model's generation is sampling "
 **[[YouTube link](https://www.youtube.com/watch?v=ENMtsWy52WA)]** <br />
 ```bash
+$ cd src
 $ manim sampling.py
 ```
 
@@ -132,7 +149,7 @@ $ manim sampling.py
 " Encoding is reducing numbers based on assumption "
 **[[YouTube link](https://www.youtube.com/watch?v=WLCDkfFXbj0)]** <br />
 ```bash
-$ cd encoder
+$ cd src/encoder
 $ manim main.py
 ```
 
@@ -140,6 +157,7 @@ $ manim main.py
 " AutoEncoder automatically finds rules in data "
 **[[YouTube link](https://www.youtube.com/watch?v=Byo7yew9-OQ)]** <br />
 ```bash
+$ cd src
 $ manim autoencoder.py
 ```
 
@@ -148,7 +166,7 @@ $ manim autoencoder.py
 **[[YouTube link](https://www.youtube.com/watch?v=q-n2HNan9jo)]** <br />
 Requirements: https://github.com/CodingVillainKor/SimpleDeepLearning/blob/main/vae.ipynb 에서 학습시킨 모델 체크포인트 ae.ckpt, aez1.ckpt
 ```bash
-$ cd vae
+$ cd src/vae
 $ manim main.py
 ```
 
@@ -156,6 +174,7 @@ $ manim main.py
 " Deriving diffusion loss is quite convoluted "
 **[[YouTube link](https://www.youtube.com/watch?v=RGlwzCWJubs)]** <br />
 ```bash
+$ cd src
 $ manim diffusion1.py
 ```
 
@@ -163,7 +182,7 @@ $ manim diffusion1.py
 Vector quantization
 **[[YouTube link](https://youtu.be/mypBS6tPPUA)]** <br />
 ```bash
-$ cd vqvae1
+$ cd src/vqvae1
 $ manim main.py
 ```
 
@@ -171,6 +190,7 @@ $ manim main.py
 Neural ODE1
 **[[YouTube link](https://www.youtube.com/watch?v=afQICWJmpu0)]** <br />
 ```bash
+$ cd src
 $ manim node1.py
 ```
 
@@ -178,6 +198,7 @@ $ manim node1.py
 Neural ODE3
 **[[YouTube link](https://www.youtube.com/watch?v=UZu2ls-HUlk)]** <br />
 ```bash
+$ cd src
 $ manim node3.py
 ```
 
@@ -185,7 +206,7 @@ $ manim node3.py
 Explaining interior goat grazing
 **[[YouTube link](https://www.youtube.com/watch?v=feeIKrSsksQ)]** <br />
 ```bash
-$ cd goatgrazing
+$ cd src/goatgrazing
 $ manim main.py
 ```
 
@@ -193,7 +214,7 @@ $ manim main.py
 Neural ODE4
 **[[YouTube link]](https://youtu.be/0IjAHl_DV98)** <br />
 ```bash
-$ cd node4
+$ cd src/node4
 $ manim main.py
 ```
 
@@ -201,6 +222,7 @@ $ manim main.py
 pytorch - nn.Linear 설명
 **[[YouTube link](https://www.youtube.com/watch?v=zj8_UbOAKkk)]** <br />
 ```bash
+$ cd src
 $ manim nnLinear.py
 ```
 
@@ -208,6 +230,7 @@ $ manim nnLinear.py
 Flow matching 1 : Vector field?
 **[[YouTube link]](https://www.youtube.com/watch?v=1TCy3sXDP_Q)**  <br />
 ```bash
+$ cd src
 $ manim flowmatching1.py
 ```
 
@@ -215,6 +238,7 @@ $ manim flowmatching1.py
 Pytorch의 layernorm 설명이 헷갈림
 [[YouTube link]](https://www.youtube.com/watch?v=r7DRvHmHcNU) <br />
 ```bash
+$ cd src
 $ manim layernorm.py
 ```
 
@@ -223,7 +247,7 @@ $ manim layernorm.py
 nn.Module이 아니라 nn.Conv를 상속하는 이유
 [[YouTube link]](https://www.youtube.com/watch?v=CibhSgvTFGE) <br />
 ```bash
-$ cd convbld
+$ cd src/convbld
 $ manim convbld.py
 ```
 
@@ -231,6 +255,6 @@ $ manim convbld.py
 `git checkout <commit-hash>` 케이스만
 [[YouTube link]](https://www.youtube.com/watch?v=kerEZBJyzEM) <br />
 ```bash
-$ cd gitcheckout
+$ cd src/gitcheckout
 $ manim main.py
 ```
