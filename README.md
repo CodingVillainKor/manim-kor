@@ -1,11 +1,11 @@
 # manim-kor
 Manim(3Blue1Brown) Korean channel <br /> 
 
-### manimdef.py 파일?
+## manimdef.py 파일?
 ~~제가 manim 작업하기 편하려고 만든 것입니다. 대부분의 .py 파일에서 이것을 import해서 사용합니다~~ <br />
 (25.04.19 - `manimdef.py`는 더 이상 사용되지 않습니다
 
-### raenim
+## raenim
 manim 기반 utility tool  
 [링크](https://github.com/CodingVillainKor/raenim)에서 설치하신 후 아래와 같이 import해서 사용하실 수 있습니다
 ```python
@@ -14,8 +14,16 @@ from raenim import *
 # Scene2D, Scene3D, PythonCode, MINT, ...
 ``` 
 
-### How to start
-TBU
+## How to start
+### 내 프로젝트 시작하기:
+```bash
+$ uv init_project.py --name my_manim
+```
+
+### Manim impl. 기본기:
+1. 클래스가 하나의 영상입니다
+2. `manim main.py <class_name>` 실행 시 <class_name>.construct()를 실행합니다
+3. 생성된 영상은 `media/`에 저장됩니다
 
 
 ## 1. 비교 연산자 버그
