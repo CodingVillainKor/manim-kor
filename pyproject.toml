@@ -14,3 +14,4 @@ dependencies = [
 
 [tool.uv.sources]
 raenim = { git = "https://github.com/CodingVillainKor/raenim.git" }
+manim = { git = "https://github.com/CodingVillainKor/manim.git", rev = "icm/ffmpeg-render" }

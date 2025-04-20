@@ -142,7 +142,7 @@ wheels = [
 [[package]]
 name = "manim"
 version = "0.19.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/CodingVillainKor/manim.git?rev=icm%2Fffmpeg-render#1ba9007c3e91ddb736a1b29f935ce6ea61061a2f" }
 dependencies = [
     { name = "av" },
     { name = "beautifulsoup4" },
@@ -170,10 +170,6 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "watchdog" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/52/79/29f287beebcf52464c2cfd88015720992515062dd373bd37c2ed34955cdd/manim-0.19.0.tar.gz", hash = "sha256:748115ffc1dea24940fd6d7a3edcae0ccedc3e1874ebc1f5d7e5c6d69a4f4505", size = 531082 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d9/30/2993e7468ff045e19a4fbfd5c540c921b6f884faebdecc9d97534882e48b/manim-0.19.0-py3-none-any.whl", hash = "sha256:aee98d359d85733ea91f459d0ad8168da03593ce2001355432b5e31ca8bcdcaf", size = 625936 },
-]
 
 [[package]]
 name = "manim-kor"
@@ -189,7 +185,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "manim", specifier = "==0.19.0" },
+    { name = "manim", git = "https://github.com/CodingVillainKor/manim.git?rev=icm%2Fffmpeg-render" },
     { name = "raenim", git = "https://github.com/CodingVillainKor/raenim.git" },
     { name = "torch", specifier = "==2.6.0" },
     { name = "torchaudio", specifier = "==2.6.0" },
