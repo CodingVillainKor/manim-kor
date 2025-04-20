@@ -35,7 +35,7 @@ False == False in [False]
 
 ```bash
 $ cd src
-$ manim comparison_bug.py
+$ uv run manim comparison_bug.py
 ```
 
 
@@ -45,10 +45,10 @@ $O(n^2)$ &nbsp;&nbsp; vs &nbsp;&nbsp; $O(n\textrm{log}n)$ &nbsp;&nbsp; vs &nbsp;
 Check files in **[[sort folder](https://github.com/CodingVillainKor/manim-kor/tree/main/sort)]**
 ```bash
 $ cd src
-$ manim bubblesort.py
-$ manim mergesort.py
-$ manim plottinggraph.py
-$ manim radixsort.py
+$ uv run manim bubblesort.py
+$ uv run manim mergesort.py
+$ uv run manim plottinggraph.py
+$ uv run manim radixsort.py
 ```
 
 ## 3. Attention is all you need 1
@@ -57,9 +57,9 @@ $ manim radixsort.py
 Check files in **[[attention folder](https://github.com/CodingVillainKor/manim-kor/tree/main/attention)]**
 ```bash
 $ cd src
-$ manim innerprd.py
-$ manim main.py
-$ manim xtoexp.py
+$ uv run manim innerprd.py
+$ uv run manim main.py
+$ uv run manim xtoexp.py
 ```
 
 ## 4. Array Doubling
@@ -68,9 +68,9 @@ $ manim xtoexp.py
 Check files in **[[arraydoubling folder](https://github.com/CodingVillainKor/manim-kor/tree/main/arraydoubling)]**
 ```bash
 $ cd src
-$ manim arraydoubling.py
-$ manim equation.py
-$ manim subfootage.py
+$ uv run manim arraydoubling.py
+$ uv run manim equation.py
+$ uv run manim subfootage.py
 ```
 
 
@@ -79,7 +79,7 @@ $ manim subfootage.py
 **[[YouTube link](https://www.youtube.com/watch?v=S5_9lYB4sAE)]** <br />
 ```bash
 $ cd src
-$ manim karatsuba.py
+$ uv run manim karatsuba.py
 ```
 
 ## 6. Attention is all you need 2
@@ -88,11 +88,11 @@ $ manim karatsuba.py
 Check files in **[[attention2](https://github.com/CodingVillainKor/manim-kor/tree/main/attention2)]**
 ```bash
 $ cd src
-$ manim attention.py
-$ manim attention_permute.py
-$ manim encdec.py
-$ manim pos_enc.py
-$ manim pos_enc_permute.py
+$ uv run manim attention.py
+$ uv run manim attention_permute.py
+$ uv run manim encdec.py
+$ uv run manim pos_enc.py
+$ uv run manim pos_enc_permute.py
 ```
 
 ## 7. Attention is all you need 3
@@ -101,7 +101,7 @@ $ manim pos_enc_permute.py
 Check files in **[[attention3](https://github.com/CodingVillainKor/manim-kor/tree/main/attention3)]**
 ```bash
 $ cd src
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 8. Short circuit evaluation
@@ -110,7 +110,7 @@ $ manim main.py
 Check files in **[[shortcircuit](https://github.com/CodingVillainKor/manim-kor/tree/main/shortcircuit)]**
 ```bash
 $ cd src
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 9. Hash table
@@ -118,7 +118,7 @@ $ manim main.py
 **[[YouTube link](https://www.youtube.com/watch?v=dQvwCg2DnxA)]** <br />
 ```bash
 $ cd src
-$ manim hash_datastructure.py
+$ uv run manim hash_datastructure.py
 ```
 
 ## 10. Maze solver using STACK(DFS)
@@ -126,7 +126,7 @@ $ manim hash_datastructure.py
 **[[YouTube link](https://www.youtube.com/watch?v=3fzqQOM4gSs)]** <br />
 ```bash
 $ cd src
-$ manim maze_solver.py
+$ uv run manim maze_solver.py
 ```
 
 ## 11. Drunk Passenger Problem
@@ -134,7 +134,7 @@ $ manim maze_solver.py
 **[[YouTube link](https://www.youtube.com/watch?v=zznpJFhuLTg)]** <br />
 ```bash
 $ cd src
-$ manim drunkpassenger.py
+$ uv run manim drunkpassenger.py
 ```
 
 ## 12. 한글 초 / 중 / 종성 분해 알고리즘
@@ -142,7 +142,7 @@ $ manim drunkpassenger.py
 **[[YouTube link](https://www.youtube.com/watch?v=2QtG7QbXOPY)]** <br />
 ```bash
 $ cd src
-$ manim hangul_stopwatch.py
+$ uv run manim hangul_stopwatch.py
 ```
 
 ## 13. 생성 모델의 생성은 샘플링
@@ -150,7 +150,7 @@ $ manim hangul_stopwatch.py
 **[[YouTube link](https://www.youtube.com/watch?v=ENMtsWy52WA)]** <br />
 ```bash
 $ cd src
-$ manim sampling.py
+$ uv run manim sampling.py
 ```
 
 ## 14. 인코더와 디코더
@@ -158,7 +158,7 @@ $ manim sampling.py
 **[[YouTube link](https://www.youtube.com/watch?v=WLCDkfFXbj0)]** <br />
 ```bash
 $ cd src/encoder
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 15. 오토인코더
@@ -166,7 +166,7 @@ $ manim main.py
 **[[YouTube link](https://www.youtube.com/watch?v=Byo7yew9-OQ)]** <br />
 ```bash
 $ cd src
-$ manim autoencoder.py
+$ uv run manim autoencoder.py
 ```
 
 ## 16. VAE
@@ -175,7 +175,7 @@ $ manim autoencoder.py
 Requirements: https://github.com/CodingVillainKor/SimpleDeepLearning/blob/main/vae.ipynb 에서 학습시킨 모델 체크포인트 ae.ckpt, aez1.ckpt
 ```bash
 $ cd src/vae
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 17. Diffusion
@@ -183,7 +183,7 @@ $ manim main.py
 **[[YouTube link](https://www.youtube.com/watch?v=RGlwzCWJubs)]** <br />
 ```bash
 $ cd src
-$ manim diffusion1.py
+$ uv run manim diffusion1.py
 ```
 
 ## 18. VQVAE1
@@ -191,7 +191,7 @@ Vector quantization
 **[[YouTube link](https://youtu.be/mypBS6tPPUA)]** <br />
 ```bash
 $ cd src/vqvae1
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 19. Neural ODE1
@@ -199,7 +199,7 @@ Neural ODE1
 **[[YouTube link](https://www.youtube.com/watch?v=afQICWJmpu0)]** <br />
 ```bash
 $ cd src
-$ manim node1.py
+$ uv run manim node1.py
 ```
 
 ## 20. Neural ODE3
@@ -207,7 +207,7 @@ Neural ODE3
 **[[YouTube link](https://www.youtube.com/watch?v=UZu2ls-HUlk)]** <br />
 ```bash
 $ cd src
-$ manim node3.py
+$ uv run manim node3.py
 ```
 
 ## 21. Interior Goat Grazing Problem
@@ -215,7 +215,7 @@ Explaining interior goat grazing
 **[[YouTube link](https://www.youtube.com/watch?v=feeIKrSsksQ)]** <br />
 ```bash
 $ cd src/goatgrazing
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 22. Neural ODE4
@@ -223,7 +223,7 @@ Neural ODE4
 **[[YouTube link]](https://youtu.be/0IjAHl_DV98)** <br />
 ```bash
 $ cd src/node4
-$ manim main.py
+$ uv run manim main.py
 ```
 
 ## 23. nn.Linear
@@ -231,7 +231,7 @@ pytorch - nn.Linear 설명
 **[[YouTube link](https://www.youtube.com/watch?v=zj8_UbOAKkk)]** <br />
 ```bash
 $ cd src
-$ manim nnLinear.py
+$ uv run manim nnLinear.py
 ```
 
 ## 24. Flow matching 1
@@ -239,7 +239,7 @@ Flow matching 1 : Vector field?
 **[[YouTube link]](https://www.youtube.com/watch?v=1TCy3sXDP_Q)**  <br />
 ```bash
 $ cd src
-$ manim flowmatching1.py
+$ uv run manim flowmatching1.py
 ```
 
 ## 25. Layer normailization
@@ -247,7 +247,7 @@ Pytorch의 layernorm 설명이 헷갈림
 [[YouTube link]](https://www.youtube.com/watch?v=r7DRvHmHcNU) <br />
 ```bash
 $ cd src
-$ manim layernorm.py
+$ uv run manim layernorm.py
 ```
 
 
@@ -256,7 +256,7 @@ nn.Module이 아니라 nn.Conv를 상속하는 이유
 [[YouTube link]](https://www.youtube.com/watch?v=CibhSgvTFGE) <br />
 ```bash
 $ cd src/convbld
-$ manim convbld.py
+$ uv run manim convbld.py
 ```
 
 ## 27. git checkout
@@ -264,5 +264,14 @@ $ manim convbld.py
 [[YouTube link]](https://www.youtube.com/watch?v=kerEZBJyzEM) <br />
 ```bash
 $ cd src/gitcheckout
-$ manim main.py
+$ uv run manim main.py
+```
+
+
+## 28. getattrConfig
+getattr()로 고수같이 import하는 법
+[[YouTube link]]() <br />
+```bash
+$ cd src/getattrConfig
+$ uv run manim main.py
 ```
