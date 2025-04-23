@@ -244,25 +244,169 @@ class togitcommit(Scene2D):
         self.playw(FadeIn(entire_butchash))
 
         self.play(FadeOut(init, cline1, ccline_init, code_init))
-        cline2.add_updater(lambda m: m.put_start_and_end_on(c1.get_top(), c2.get_bottom()))
-        ccline_c1.add_updater(lambda m: m.put_start_and_end_on(c1.get_right(), code_c1.get_left()))
+        cline2.add_updater(
+            lambda m: m.put_start_and_end_on(c1.get_top(), c2.get_bottom())
+        )
+        ccline_c1.add_updater(
+            lambda m: m.put_start_and_end_on(c1.get_right(), code_c1.get_left())
+        )
         code_c1.add_updater(lambda m: m.next_to(c1, RIGHT, buff=0.75))
-        self.playw(c1.animate.shift(DOWN*2), self.cf.animate.shift(DOWN*0.5))
+        self.playw(c1.animate.shift(DOWN * 2), self.cf.animate.shift(DOWN * 0.5))
 
-        dots = VGroup(*[Dot(color=BLUE).move_to(cline2.point_from_proportion(p)) for p in [1/3, 2/3]])
+        dots = VGroup(
+            *[
+                Dot(color=BLUE).move_to(cline2.point_from_proportion(p))
+                for p in [1 / 3, 2 / 3]
+            ]
+        )
         self.playw(FadeIn(dots))
-        modified = Text("modified: main.py", font_size=24, color=RED).next_to(code_c1, UP, buff=0.5).align_to(code_c1, LEFT)
-        marrow = Arrow(modified.get_left(), dots[0].get_right(), color=WHITE, buff=0.05, stroke_width=2)
-        staged = Text("to be committed: main.py", font_size=24, color=PURE_GREEN).next_to(modified, UP, buff=0.5).align_to(code_c1, LEFT)
-        sarrow = Arrow(staged[1].get_left(), dots[1].get_right(), color=WHITE, buff=0.05, stroke_width=2)
+        modified = (
+            Text("modified: main.py", font_size=24, color=RED)
+            .next_to(code_c1, UP, buff=0.5)
+            .align_to(code_c1, LEFT)
+        )
+        marrow = Arrow(
+            modified.get_left(),
+            dots[0].get_right(),
+            color=WHITE,
+            buff=0.05,
+            stroke_width=2,
+        )
+        staged = (
+            Text("to be committed: main.py", font_size=24, color=PURE_GREEN)
+            .next_to(modified, UP, buff=0.5)
+            .align_to(code_c1, LEFT)
+        )
+        sarrow = Arrow(
+            staged[1].get_left(),
+            dots[1].get_right(),
+            color=WHITE,
+            buff=0.05,
+            stroke_width=2,
+        )
         self.playw(LaggedStart(FadeIn(marrow), FadeIn(modified), lag_ratio=0.3))
         self.playw(LaggedStart(FadeIn(sarrow), FadeIn(staged), lag_ratio=0.3))
 
-        prohibit_arrow = Arrow(c1.get_top(), c2.get_bottom(), color=PURE_RED, stroke_width=12, buff=0)
+        prohibit_arrow = Arrow(
+            c1.get_top(), c2.get_bottom(), color=PURE_RED, stroke_width=12, buff=0
+        )
         self.playw(GrowArrow(prohibit_arrow))
         prohibit_arrow.generate_target()
-        prohibit_arrow.target.rotate(120*DEGREES, about_point=prohibit_arrow.get_bottom()).shift(DOWN*3 + LEFT*2)
+        prohibit_arrow.target.rotate(
+            120 * DEGREES, about_point=prohibit_arrow.get_bottom()
+        ).shift(DOWN * 3 + LEFT * 2)
         self.playw(MoveToTarget(prohibit_arrow))
+
+
+class saveaddcommit(Scene3D):
+    def construct(self):
+        self.tilt_camera_vertical(60)
+        _scale = 0.4
+        before = (
+            RoundedRectangle(
+                corner_radius=0.25, width=22, height=9, stroke_width=3, color=GREY_B
+            )
+            .scale(_scale)
+            .shift(DOWN * 3)
+        )
+        commit1t = (
+            Text("commit1", font_size=24, color=GREEN_B)
+            .rotate(60 * DEGREES, RIGHT)
+            .next_to(before, LEFT)
+            .align_to(before, UP)
+        )
+        stage = (
+            RoundedRectangle(
+                corner_radius=0.25, width=16, height=9, stroke_width=3, color=GREY_B
+            )
+            .scale(_scale)
+            .shift(UP*2)
+        )
+        staget = (
+            Text("stage", font_size=24, color=GREEN_B)
+            .rotate(60 * DEGREES, RIGHT)
+            .next_to(stage, LEFT)
+            .align_to(stage, UP)
+        )
+        commited = (
+            RoundedRectangle(
+                corner_radius=0.25, width=24, height=9, stroke_width=3, color=GREY_B
+            )
+            .scale(_scale)
+            .shift(UP * 7)
+        )
+        commit2t = (
+            Text("commit2", font_size=24, color=GREEN_B)
+            .rotate(60 * DEGREES, RIGHT)
+            .next_to(commited, LEFT)
+            .align_to(commited, UP)
+        )
+        self.playw(
+            LaggedStart(
+                *[
+                    FadeIn(item)
+                    for item in [
+                        VGroup(before, commit1t),
+                        VGroup(stage, staget),
+                        VGroup(commited, commit2t),
+                    ]
+                ],
+                lag_ratio=0.3,
+            )
+        )
+        mainpy0 = FileIcon("main.py")
+        utilpy0 = FileIcon("util.py")
+        modulepy0 = FileIcon("module.py")
+        commit1 = (
+            VGroup(mainpy0, utilpy0, modulepy0).arrange(RIGHT, buff=0.5).move_to(before)
+        )
+        self.playw(FadeIn(commit1))
+
+        changed_mainpy = Text("modified", font_size=24, color=RED).next_to(
+            mainpy0, UP, buff=0.25
+        )
+        changed_utilpy = Text("modified", font_size=24, color=RED).next_to(
+            utilpy0, UP, buff=0.25
+        )
+        self.playw(
+            FadeIn(changed_mainpy, shift=UP * 0.5),
+            FadeIn(changed_utilpy, shift=UP * 0.5),
+        )
+
+        command_gitadd = (
+            Text("git add main.py", font_size=24, font="Noto Mono", color=YELLOW)
+            .rotate(60 * DEGREES, RIGHT)
+            .next_to(before, UP, buff=0.5)
+        )
+        self.playw(LaggedStart(*[FadeIn(c) for c in command_gitadd], lag_ratio=0.05))
+        mainpy1 = mainpy0.copy()
+        self.playw(
+            LaggedStart(
+                FadeOut(command_gitadd),
+                mainpy1.animate.move_to(stage).set_color(RED_B),
+                lag_ratio=0.3,
+            )
+        )
+        command_gitcommit = Text("git commit -m 'update main.py'", font_size=24, color=YELLOW).rotate(
+            60 * DEGREES, RIGHT
+        ).next_to(stage, UP, buff=0.5)
+        self.playw(LaggedStart(*[FadeIn(c) for c in command_gitcommit], lag_ratio=0.05))
+        self.play(
+            LaggedStart(
+                FadeOut(command_gitcommit),
+                mainpy1.animate.move_to(commited),
+                FadeOut(changed_mainpy),
+                lag_ratio=0.3,
+            )
+        )
+        commit2 = VGroup(mainpy1, utilpy0.copy(), modulepy0.copy())
+        commit2.generate_target()
+        commit2.target.arrange(RIGHT, buff=0.5).move_to(commited)
+        
+        self.playw(MoveToTarget(commit2), changed_utilpy.copy().animate.next_to(commit2.target[1], UP, buff=0.25))
+
+
+
 
 get_commit = lambda: Circle(radius=0.15, color=WHITE, fill_color=BLACK, fill_opacity=1)
 chash = lambda text: Text(text, font_size=24, color=RED)
