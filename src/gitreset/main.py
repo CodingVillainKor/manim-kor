@@ -320,7 +320,7 @@ class saveaddcommit(Scene3D):
                 corner_radius=0.25, width=16, height=9, stroke_width=3, color=GREY_B
             )
             .scale(_scale)
-            .shift(UP*2)
+            .shift(UP * 2)
         )
         staget = (
             Text("stage", font_size=24, color=GREEN_B)
@@ -387,9 +387,11 @@ class saveaddcommit(Scene3D):
                 lag_ratio=0.3,
             )
         )
-        command_gitcommit = Text("git commit -m 'update main.py'", font_size=24, color=YELLOW).rotate(
-            60 * DEGREES, RIGHT
-        ).next_to(stage, UP, buff=0.5)
+        command_gitcommit = (
+            Text("git commit -m 'update main.py'", font_size=24, color=YELLOW)
+            .rotate(60 * DEGREES, RIGHT)
+            .next_to(stage, UP, buff=0.5)
+        )
         self.playw(LaggedStart(*[FadeIn(c) for c in command_gitcommit], lag_ratio=0.05))
         self.play(
             LaggedStart(
@@ -402,10 +404,143 @@ class saveaddcommit(Scene3D):
         commit2 = VGroup(mainpy1, utilpy0.copy(), modulepy0.copy())
         commit2.generate_target()
         commit2.target.arrange(RIGHT, buff=0.5).move_to(commited)
+
+        self.playw(
+            MoveToTarget(commit2),
+            changed_utilpy.copy().animate.next_to(commit2.target[1], UP, buff=0.25),
+        )
+
+
+class saveaddcommitDetail(Scene3D):
+    def construct(self):
+        init = get_commit()
+        c1, cline1 = new_commit(init, direction="right")
+        c2, cline2 = new_commit(c1, direction="right")
+        c3, cline3 = new_commit(c2, direction="right")
+        commits = (
+            VGroup(init, cline1, c1, cline2, c2, cline3, c3)
+            .move_to(ORIGIN)
+            .shift(DOWN * 1.5 + LEFT * 2)
+        )
+        cts = VGroup(
+            *[
+                Text(item, font_size=24, color=YELLOW_A).next_to(c, DOWN)
+                for item, c in [["c0", init], ["c1", c1], ["c2", c2], ["c3", c3]]
+            ]
+        )
+        code = PythonCode("src/example.py", add_line_numbers=False).shift(
+            UP + RIGHT * 3
+        )
+        code.frame.stroke_color = YELLOW
+        code.frame.set_opacity(1).set_fill(opacity=0.7)
+
+        c0line_midpoint = init.get_top() + UP * 3.58
+        c0line = BrokenLine(
+            init.get_top(),
+            c0line_midpoint,
+            code.get_left() + UP * 1.2,
+            stroke_width=2,
+            color=YELLOW,
+            arrow=True,
+            tip_length=0.2,
+        )
+        c1code = code(1).set_color(BLUE)
+        c1line = Arrow(
+            c1.get_top(),
+            c1code[0].get_left(),
+            color=BLUE,
+            buff=0.05,
+            tip_length=0.2,
+            stroke_width=2,
+        )
+        c2code = code(2).set_color(PURPLE_D)
+        c2line = Arrow(
+            c2.get_top(),
+            c2code[0].get_left(),
+            color=PURPLE_D,
+            buff=0.05,
+            tip_length=0.2,
+            stroke_width=2,
+        )
+        c3code = code(4).set_color(GREEN)
+        c3line = Arrow(
+            c3.get_top(),
+            c3code[0].get_left(),
+            color=GREEN,
+            buff=0.05,
+            tip_length=0.2,
+            stroke_width=2,
+        )
         
-        self.playw(MoveToTarget(commit2), changed_utilpy.copy().animate.next_to(commit2.target[1], UP, buff=0.25))
+        modified = SurroundingRect(color=PURE_RED).surround(
+            code(-1).set_color(PURE_RED)
+        )
+        modifiedt = (
+            Text("modified", font_size=16, color=PURE_RED)
+            .next_to(modified, RIGHT, buff=0.05)
+            .align_to(modified, UP)
+        )
 
+        self.playw(
+            FadeIn(
+                commits, cts, code, c0line, c1line, c2line, c3line, modified, modifiedt
+            )
+        )
+        self.playw(Indicate(VGroup(modified, modifiedt, code(-1))))
+        self.playw(
+            LaggedStart(
+                *[Indicate(item) for item in [c3line, c2line, c1line, c0line]],
+                lag_ratio=0.1,
+            )
+        )
 
+        gitresetc2 = (
+            Text("git reset c2", font_size=24, font="Noto Mono")
+            .set_color_by_gradient(RED_B, RED_D)
+            .next_to(c3, RIGHT, buff=2)
+        )
+        self.playw(LaggedStart(*[FadeIn(c) for c in gitresetc2], lag_ratio=0.05))
+        self.playw(
+            LaggedStart(
+                *[Indicate(item) for item in [c3line, c2line, c1line, c0line]],
+                lag_ratio=0.1,
+            )
+        )
+        c3.save_state()
+        self.playw(
+            FadeOut(c3line, cts[-1]),
+            c3.animate.become(
+                Text("staged", font_size=24, font="Noto Mono", color=GREEN)
+                .move_to(c3)
+                .align_to(c3, LEFT)
+            ),
+        )
+        modifiedt.add_updater(
+            lambda m: m.next_to(modified, RIGHT, buff=0.05).align_to(modified, UP)
+        )
+        code(4).save_state()
+        self.playw(
+            LaggedStart(
+                FadeOut(c3, cline3, gitresetc2),
+                modified.animate.surround(code(4, 6), buff_w=-1.05),
+                code(4).animate.set_color(PURE_RED),
+                lag_ratio=0.3,
+            )
+        )
+
+        modifiedt.suspend_updating()
+        modified = VGroup(modified, modifiedt)
+        self.playw(modified.animate.become(cline3), FadeIn(c3))
+        self.play(Restore(c3), FadeIn(cts[-1]))
+        c3line2 = Arrow(
+            c3.get_top(),
+            code(-1).get_left(),
+            color=GREEN,
+            buff=0.05,
+            tip_length=0.2,
+            stroke_width=2,
+        )
+        self.playw(FadeIn(c3line, c3line2), Restore(code(4)), code(-1).animate.set_color(GREEN))
 
 
 get_commit = lambda: Circle(radius=0.15, color=WHITE, fill_color=BLACK, fill_opacity=1)
