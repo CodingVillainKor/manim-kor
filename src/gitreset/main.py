@@ -471,7 +471,7 @@ class saveaddcommitDetail(Scene3D):
             tip_length=0.2,
             stroke_width=2,
         )
-        
+
         modified = SurroundingRect(color=PURE_RED).surround(
             code(-1).set_color(PURE_RED)
         )
@@ -540,7 +540,112 @@ class saveaddcommitDetail(Scene3D):
             tip_length=0.2,
             stroke_width=2,
         )
-        self.playw(FadeIn(c3line, c3line2), Restore(code(4)), code(-1).animate.set_color(GREEN))
+        self.playw(
+            FadeIn(c3line, c3line2), Restore(code(4)), code(-1).animate.set_color(GREEN)
+        )
+
+
+class options(Scene2D):
+    def construct(self):
+        gitreset_text = Text(
+            "git reset", font_size=28, font="Noto Mono"
+        ).set_color_by_gradient(RED_B, RED_D)
+        self.playw(LaggedStart(*[FadeIn(c) for c in gitreset_text], lag_ratio=0.05))
+        gitreset_text1, gitreset_text2, gitreset_text3 = (
+            gitreset_text.copy().shift(UP * 2),
+            gitreset_text,
+            gitreset_text.copy().shift(DOWN * 2),
+        )
+        self.playw(
+            FadeIn(gitreset_text1, scale=0.8, shift=UP),
+            FadeIn(gitreset_text3, scale=0.8, shift=DOWN),
+        )
+
+        soft = (
+            Text("--soft", font_size=28, font="Noto Mono")
+            .set_color_by_gradient(RED_B, RED_D)
+            .next_to(gitreset_text1, RIGHT, buff=0.5)
+        )
+        mixed = (
+            Text("--mixed", font_size=28, font="Noto Mono")
+            .set_color_by_gradient(RED_B, RED_D)
+            .next_to(gitreset_text2, RIGHT, buff=0.5)
+        )
+        hard = (
+            Text("--hard", font_size=28, font="Noto Mono")
+            .set_color_by_gradient(RED_B, RED_D)
+            .next_to(gitreset_text3, RIGHT, buff=0.5)
+        )
+        for item, gr in [
+            [soft, gitreset_text1],
+            [mixed, gitreset_text2],
+            [hard, gitreset_text3],
+        ]:
+            self.play(
+                LaggedStart(*[FadeIn(c) for c in item], lag_ratio=0.05),
+                gr.animate.set_color(GREY_B),
+            )
+        self.wait()
+        self.playw(
+            self.cf.animate.shift(RIGHT), VGroup(soft, hard).animate.set_opacity(0.3)
+        )
+        self.playw(mixed.animate.set_opacity(0))
+        self.play(soft.animate.set_opacity(1))
+        self.playw(hard.animate.set_opacity(1))
+        self.wait(3)
+
+        grsoft, grmixed, grhard = [
+            VGroup(gitreset_text1, soft),
+            VGroup(gitreset_text2, mixed),
+            VGroup(gitreset_text3, hard),
+        ]
+        self.playw(
+            VGroup(grsoft, grmixed, grhard)
+            .animate.arrange(DOWN, buff=0.4, aligned_edge=LEFT)
+            .shift(UP * 2.0),
+            self.cf.animate.move_to(ORIGIN),
+        )
+
+        init = get_commit().shift(DOWN * 1.5)
+        followed = DashedLine(
+            init.get_left() + LEFT * 2, init.get_left()
+        ).set_color_by_gradient(GREY_E, GREY_B)
+        modified = (
+            Text("modified", font_size=24, color=RED)
+            .next_to(init, UP, buff=0.1)
+            .align_to(init, LEFT)
+        )
+        self.playw(FadeIn(init, followed))
+        first = Text("①", color=YELLOW, font_size=24).next_to(modified, LEFT, buff=0.1)
+        self.playw(FadeIn(modified, first))
+        c1, add_line = new_commit(init, direction="right")
+        second = Text("②", color=YELLOW, font_size=24).next_to(add_line, DOWN, buff=0.1)
+        c1.set_color(GREEN).set_fill(opacity=0)
+        third = Text("③", color=YELLOW, font_size=24).next_to(c1, DOWN, buff=0.1)
+        staged = Text("staged", font_size=24, color=GREEN).move_to(c1).align_to(c1, LEFT)
+        stagedc = staged.copy()
+        s0 = modified.copy()
+        self.playw(FadeIn(add_line, second), s0.animate.become(staged))
+        self.playw(s0.animate.become(c1), FadeIn(third))
+
+        self.playw(VGroup(grsoft, grhard).animate.set_opacity(0.2))
+        self.playw(grmixed.animate.set_opacity(1))
+        c1 = s0
+        
+        graph = VGroup(first, second, third, init, followed, modified, add_line, c1)
+        graph.save_state()
+        self.playw(VGroup(third, c1, add_line, second).animate.set_opacity(0))
+        self.play(Restore(graph))
+        self.playw(grmixed.animate.set_opacity(0.2), grsoft.animate.set_opacity(1))
+        graph.save_state()
+        self.playw(third.animate.set_opacity(0), c1.animate.become(stagedc))
+        self.wait(2)
+        self.playw(Restore(graph))
+
+        self.playw(grsoft.animate.set_opacity(0.2), grhard.animate.set_opacity(1))
+        self.playw(VGroup(third, c1, add_line, second, modified, first).animate.set_opacity(0))
+        self.wait(3)
+
 
 
 get_commit = lambda: Circle(radius=0.15, color=WHITE, fill_color=BLACK, fill_opacity=1)

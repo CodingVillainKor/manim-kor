@@ -142,7 +142,7 @@ wheels = [
 [[package]]
 name = "manim"
 version = "0.19.0"
-source = { git = "https://github.com/CodingVillainKor/manim.git?rev=icm%2Fffmpeg-render#1ba9007c3e91ddb736a1b29f935ce6ea61061a2f" }
+source = { git = "https://github.com/CodingVillainKor/manim.git#e47d2c3dd47cf6c718e0b35f2b448f97372d55a7" }
 dependencies = [
     { name = "av" },
     { name = "beautifulsoup4" },
@@ -185,7 +185,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "manim", git = "https://github.com/CodingVillainKor/manim.git?rev=icm%2Fffmpeg-render" },
+    { name = "manim", git = "https://github.com/CodingVillainKor/manim.git" },
     { name = "raenim", git = "https://github.com/CodingVillainKor/raenim.git" },
     { name = "torch", specifier = "==2.6.0" },
     { name = "torchaudio", specifier = "==2.6.0" },
@@ -557,8 +557,8 @@ wheels = [
 
 [[package]]
 name = "raenim"
-version = "0.4.1"
-source = { git = "https://github.com/CodingVillainKor/raenim.git#2a59f91f814dbc9ad45e1d1831f1de06937f8c22" }
+version = "0.4.3"
+source = { git = "https://github.com/CodingVillainKor/raenim.git#1357b4254dc16bc9c49caac96c5e68bc717d355c" }
 
 [[package]]
 name = "rich"
