@@ -270,8 +270,16 @@ $ uv run manim main.py
 
 ## 28. getattrConfig
 getattr()로 고수같이 import하는 법
-[[YouTube link]]() <br />
+[[YouTube link]](https://www.youtube.com/watch?v=3_oXQaMdZ-w) <br />
 ```bash
 $ cd src/getattrConfig
+$ uv run manim main.py
+```
+
+## 29. git reset
+`git reset`과 `--soft`, `--mixed`, `--hard` 옵션에 대해
+[[YouTube link]](https://www.youtube.com/watch?v=37ki4_QOq4Q) <br />
+```bash
+$ cd src/gitreset
 $ uv run manim main.py
 ```
