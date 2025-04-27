@@ -283,3 +283,13 @@ $ uv run manim main.py
 $ cd src/gitreset
 $ uv run manim main.py
 ```
+
+## 30. 사소한 3가지
+1. \ 뒤에 주석
+2. 함수 안 import 범위
+3. 숫자 판별을 isnumeric / isdecimal / isdigit으로 하면 안 되는 이유
+[[YouTube link]](https://youtu.be/ajWG3lgl5jA) <br />
+```bash
+$ cd src/trivial_three
+$ uv run manim main.py
+```
