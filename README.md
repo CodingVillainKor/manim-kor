@@ -284,12 +284,20 @@ $ cd src/gitreset
 $ uv run manim main.py
 ```
 
-## 30. 사소한 3가지
+## 30. 파이썬의 사소한 3가지
 1. \ 뒤에 주석
 2. 함수 안 import 범위
 3. 숫자 판별을 isnumeric / isdecimal / isdigit으로 하면 안 되는 이유
 [[YouTube link]](https://youtu.be/ajWG3lgl5jA) <br />
 ```bash
 $ cd src/trivial_three
+$ uv run manim main.py
+```
+
+## 32. 단일 브랜치 작업 복습
+1. git init/add/commit/checkout/reset
+[[YouTube link]](https://youtu.be/-uhhTgD2thU) <br />
+```bash
+$ cd src/gitsinglebranch
 $ uv run manim main.py
 ```
