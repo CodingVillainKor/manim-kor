@@ -301,3 +301,11 @@ $ uv run manim main.py
 $ cd src/gitsinglebranch
 $ uv run manim main.py
 ```
+
+## 32. Broadcasting
+2가지 공식을 기억할 것
+[[YouTube link]](https://youtu.be/qebDZAYBLuk) <br />
+```bash
+$ cd src/broadcasting
+$ uv run manim main.py
+```
