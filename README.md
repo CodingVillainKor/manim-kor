@@ -294,7 +294,7 @@ $ cd src/trivial_three
 $ uv run manim main.py
 ```
 
-## 32. 단일 브랜치 작업 복습
+## 31. 단일 브랜치 작업 복습
 1. git init/add/commit/checkout/reset
 [[YouTube link]](https://youtu.be/-uhhTgD2thU) <br />
 ```bash
@@ -307,5 +307,13 @@ $ uv run manim main.py
 [[YouTube link]](https://youtu.be/qebDZAYBLuk) <br />
 ```bash
 $ cd src/broadcasting
+$ uv run manim main.py
+```
+
+## 33. git branch
+새 branch 만들기
+[[YouTube link]](https://youtu.be/lQ3NP9kuSx0) <br />
+```bash
+$ cd src/gitbranch
 $ uv run manim main.py
 ```
