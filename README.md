@@ -317,3 +317,11 @@ $ uv run manim main.py
 $ cd src/gitbranch
 $ uv run manim main.py
 ```
+
+## 34. git branch
+uv 후기 및 장단점
+[[YouTube link]](https://youtu.be/7_MeE7CdsrM) <br />
+```bash
+$ cd src/uv1
+$ uv run manim main.py
+```
