@@ -557,8 +557,8 @@ wheels = [
 
 [[package]]
 name = "raenim"
-version = "0.4.3"
-source = { git = "https://github.com/CodingVillainKor/raenim.git#1357b4254dc16bc9c49caac96c5e68bc717d355c" }
+version = "0.4.4"
+source = { git = "https://github.com/CodingVillainKor/raenim.git#61bb12b91c05e16cc8f7a3fefada7e14fcbbdb88" }
 
 [[package]]
 name = "rich"
