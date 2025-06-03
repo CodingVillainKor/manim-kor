@@ -318,10 +318,18 @@ $ cd src/gitbranch
 $ uv run manim main.py
 ```
 
-## 34. git branch
+## 34. What is uv
 uv 후기 및 장단점
 [[YouTube link]](https://youtu.be/7_MeE7CdsrM) <br />
 ```bash
 $ cd src/uv1
+$ uv run manim main.py
+```
+
+## 35. How to uv
+uv 후기 및 장단점
+[[YouTube link]](https://youtu.be/yQ7QWpaKNvI) <br />
+```bash
+$ cd src/uv2
 $ uv run manim main.py
 ```
