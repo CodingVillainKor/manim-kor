@@ -333,3 +333,11 @@ uv 후기 및 장단점
 $ cd src/uv2
 $ uv run manim main.py
 ```
+
+## 36. GIL vs Multithread
+uv 후기 및 장단점
+[[YouTube link]](https://youtu.be/KduRAimE7Xk) <br />
+```bash
+$ cd src/multithreadGIL
+$ uv run manim main.py
+```
