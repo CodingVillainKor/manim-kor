@@ -341,3 +341,11 @@ $ uv run manim main.py
 $ cd src/multithreadGIL
 $ uv run manim main.py
 ```
+
+## 37. breakpoint2
+" breakpoint 기본, 심화 플로우 "
+[[YouTube link]](https://youtu.be/o6st-qW2d7k) <br />
+```bash
+$ cd src/breakpoint2
+$ uv run manim main.py
+```
