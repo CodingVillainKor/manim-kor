@@ -349,3 +349,11 @@ $ uv run manim main.py
 $ cd src/breakpoint2
 $ uv run manim main.py
 ```
+
+## 38. git merge 1
+" git merge 희망편: conflict 없음 "
+[[YouTube link]](https://youtu.be/cPthpttoWuE) <br />
+```bash
+$ cd src/gitmerge1
+$ uv run manim main.py
+```
