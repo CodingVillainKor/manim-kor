@@ -357,3 +357,11 @@ $ uv run manim main.py
 $ cd src/gitmerge1
 $ uv run manim main.py
 ```
+
+## 39. pathlib
+pathlib use case: 딥러닝 전처리
+[[YouTube link]](https://youtu.be/dO7gAn1hLKU) <br />
+```bash
+$ cd src/pathlib
+$ uv run manim main.py
+```
