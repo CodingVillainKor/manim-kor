@@ -365,3 +365,11 @@ pathlib use case: 딥러닝 전처리
 $ cd src/pathlib
 $ uv run manim main.py
 ```
+
+## 40. concurrent.futures
+ProcessPoolExecutor
+[[YouTube link]](https://youtu.be/KduRAimE7Xk) <br />
+```bash
+$ cd src/concurrentfutures
+$ uv run manim main.py
+```
