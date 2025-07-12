@@ -373,3 +373,11 @@ ProcessPoolExecutor
 $ cd src/concurrentfutures
 $ uv run manim main.py
 ```
+
+## 41. DiT1
+Diffusion Transformer
+[[YouTube link]](https://youtu.be/bVV7KhGGAoQ) <br />
+```bash
+$ cd src/dit1
+$ uv run manim main.py
+```
