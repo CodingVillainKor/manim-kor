@@ -381,3 +381,11 @@ Diffusion Transformer
 $ cd src/dit1
 $ uv run manim main.py
 ```
+
+## 42. DiT2
+Diffusion Transformer2 - Time embedding and conditioning
+[[YouTube link]](https://youtu.be/uLjOwMw8l04) <br />
+```bash
+$ cd src/dit2
+$ uv run manim main.py
+```
