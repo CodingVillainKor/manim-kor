@@ -389,3 +389,11 @@ Diffusion Transformer2 - Time embedding and conditioning
 $ cd src/dit2
 $ uv run manim main.py
 ```
+
+## 43. DiT3
+Diffusion Transformer3 - adaLN, adaLN-Zero
+[[YouTube link]](https://www.youtube.com/watch?v=0eQVbpfgjqo) <br />
+```bash
+$ cd src/dit3
+$ uv run manim main.py
+```
