@@ -397,3 +397,11 @@ Diffusion Transformer3 - adaLN, adaLN-Zero
 $ cd src/dit3
 $ uv run manim main.py
 ```
+
+## 43. DiT4
+Mathematical intuition: Flipping coin
+[[YouTube link]](https://youtu.be/gYkzbYuRBdo) <br />
+```bash
+$ cd src/flipcoin
+$ uv run manim main.py
+```
