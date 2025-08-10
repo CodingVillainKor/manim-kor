@@ -398,7 +398,7 @@ $ cd src/dit3
 $ uv run manim main.py
 ```
 
-## 43. DiT4
+## 43. Flipping coin
 Mathematical intuition: Flipping coin
 [[YouTube link]](https://youtu.be/gYkzbYuRBdo) <br />
 ```bash
