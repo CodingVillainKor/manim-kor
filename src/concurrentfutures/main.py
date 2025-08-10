@@ -207,7 +207,7 @@ class imgMP(Scene3D):
                 Text(f"0.1 sec", font_size=20, font="Noto Serif", color=YELLOW_A)
                 .rotate(45 * DEGREES, DOWN)
                 .next_to(b, RIGHT, buff=0.05)
-                .shift(OUT*0.5)
+                .shift(OUT * 0.5)
                 for i, b in enumerate(braces)
             ]
         )
@@ -225,8 +225,18 @@ class imgMP(Scene3D):
                 intos = []
                 for i in range(20):
                     arg = code.text_slice(4, "process, d").copy()
-                    fn1 = processes[i % 4][-1][0].copy().rotate(45 * DEGREES, UP).scale(0.8)
-                    fn2 = processes[i % 4][-1][1].copy().rotate(45 * DEGREES, UP).scale(0.8)
+                    fn1 = (
+                        processes[i % 4][-1][0]
+                        .copy()
+                        .rotate(45 * DEGREES, UP)
+                        .scale(0.8)
+                    )
+                    fn2 = (
+                        processes[i % 4][-1][1]
+                        .copy()
+                        .rotate(45 * DEGREES, UP)
+                        .scale(0.8)
+                    )
                     return_value = fn2
                     intos.append(
                         Succession(
@@ -238,7 +248,9 @@ class imgMP(Scene3D):
                                 VGroup(fn1, fn2).animate.set_opacity(1),
                             ),
                             AnimationGroup(
-                                return_value.animate.move_to(code.text_slice(5, "future.result()")),
+                                return_value.animate.move_to(
+                                    code.text_slice(5, "future.result()")
+                                ),
                                 fn1.animate.set_opacity(0),
                             ),
                         )
@@ -246,7 +258,32 @@ class imgMP(Scene3D):
                 self.play(LaggedStart(*intos, lag_ratio=0.18))
             else:
                 self.play(anim, run_time=0.3)
-            
+
         self.wait()
 
+
+class forTN(Scene2D):
+    def construct(self):
+        box_cpu = lambda t: TextBox(
+            f"CPU | {t}%",
+            text_kwargs={
+                "font_size": 32,
+                "font": "Noto Serif",
+                "color": BLUE,
+            },
+            box_kwargs={
+                "stroke_width": 3,
+                "color": BLUE,
+                "buff": 0.2
+            }
+        )
+
+        boxes = VGroup(
+            *[box_cpu(100 if i == 0 else 0) for i in range(6)]
+        ).arrange(DOWN, aligned_edge=RIGHT).shift(LEFT*3)
+        boxes[0].set_color(RED).set_fill(RED, opacity=0.5)
+        boxes[0].text.set_color(PURE_RED)
+
+        brace = Brace(boxes[1:], RIGHT, buff=0.7, sharpness=1.5)
         
+        self.addw(boxes, brace)
