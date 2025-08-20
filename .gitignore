@@ -9,3 +9,8 @@ build/
 
 # byproduct by manim
 media/
+
+# Non-git projects
+test*/
+skipgit/
+CLAUDE.md
