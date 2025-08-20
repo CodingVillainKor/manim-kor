@@ -405,3 +405,11 @@ Mathematical intuition: Flipping coin
 $ cd src/flipcoin
 $ uv run manim main.py
 ```
+
+## 44. git conflict
+Resolving git conflict using VS Code
+[[YouTube link]](https://youtu.be/zRQyruIoBVw) <br />
+```bash
+$ cd src/gitconflict
+$ uv run manim main.py
+```
