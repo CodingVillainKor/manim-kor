@@ -398,7 +398,7 @@ $ cd src/dit3
 $ uv run manim main.py
 ```
 
-## 43. Flipping coin
+## 44. Flipping coin
 Mathematical intuition: Flipping coin
 [[YouTube link]](https://youtu.be/gYkzbYuRBdo) <br />
 ```bash
@@ -406,10 +406,18 @@ $ cd src/flipcoin
 $ uv run manim main.py
 ```
 
-## 44. git conflict
+## 45. git conflict
 Resolving git conflict using VS Code
 [[YouTube link]](https://youtu.be/zRQyruIoBVw) <br />
 ```bash
 $ cd src/gitconflict
+$ uv run manim main.py
+```
+
+## 46. hydra1
+hydra is convenient deep learning configuration library
+[[YouTube link]](https://youtu.be/T8Ze-rxNytU) <br />
+```bash
+$ cd src/hydra1
 $ uv run manim main.py
 ```
