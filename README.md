@@ -421,3 +421,11 @@ hydra is convenient deep learning configuration library
 $ cd src/hydra1
 $ uv run manim main.py
 ```
+
+## 47. git stash
+git stash is convenient when you are busy
+[[YouTube link]](https://youtu.be/mhZkl7PQBg4) <br />
+```bash
+$ cd src/gitstash
+$ uv run manim main.py
+```
