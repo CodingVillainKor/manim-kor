@@ -429,3 +429,11 @@ git stash is convenient when you are busy
 $ cd src/gitstash
 $ uv run manim main.py
 ```
+
+## 48. pip install -e .
+--editable option is cool
+[[YouTube link]](https://youtu.be/9ONtVM7KEB4) <br />
+```bash
+$ cd src/pipeditable
+$ uv run manim main.py
+```
