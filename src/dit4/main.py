@@ -118,3 +118,78 @@ class pos_embed(Scene2D):
         self.playw(self.cf.animate.scale(0.3).move_to(patches[0]))
         self.playw(self.cf.animate.move_to(patches[13]))
         self.playw(self.cf.animate.move_to(patches[-13]))
+
+class finalLayer(Scene2D):
+    def construct(self):
+        model = TextBox(
+            text="DiT",
+            text_kwargs=dict(font_size=48, color=YELLOW),
+            box_kwargs=dict(color=WHITE, buff=1, stroke_width=3),
+        ).shift(UP).set_z_index(1)
+        model.box.stretch_to_fit_width(11).stretch_to_fit_height(3.5).set_fill(BLACK, 0.7)
+        model.text.next_to(model, LEFT, buff=0.1).align_to(model, UP)
+        self.addw(model)
+
+        img_np = imread("mnist.png")[..., :1]
+        noise = np.random.randint(0, 256, img_np.shape)
+        img_np_clean = img_np.copy()
+        img_np = (img_np.astype(float) * 0.4 + noise.astype(float) * 0.6).astype(np.uint8)
+        img = VGroup(
+            *[
+                VGroup(
+                    *[
+                        Pixel(
+                            color=interpolate_color(
+                                BLACK, WHITE, img_np.astype(float)[i, j] / 255
+                            )
+                        )
+                        for j in range(img_np.shape[1])
+                    ]
+                ).arrange(RIGHT, buff=0)
+                for i in range(img_np.shape[0])
+            ]
+        ).arrange(DOWN, buff=0).scale(0.3).next_to(model, DOWN).shift(LEFT*2)
+        self.playw(FadeIn(img))
+        
+        # patchfy
+        patch_size = 4
+        patches = VGroup()
+        for i in range(0, img_np.shape[0], patch_size):
+            for j in range(0, img_np.shape[1], patch_size):
+                patch = VGroup()
+                for di in range(patch_size):
+                    for dj in range(patch_size):
+                        if i + di < img_np.shape[0] and j + dj < img_np.shape[1]:
+                            patch.add(img[i + di][j + dj])
+                patches.add(patch)
+        self.play(patches.animate.arrange(RIGHT, buff=0.02).shift(UP))
+        self.play(Indicate(patches, scale_factor=1.1, color=RED))
+
+        img_clean = VGroup(
+            *[
+                VGroup(
+                    *[
+                        Pixel(
+                            color=interpolate_color(
+                                BLACK, WHITE, img_np_clean.astype(float)[i, j] / 255
+                            )
+                        )
+                        for j in range(img_np_clean.shape[1])
+                    ]
+                ).arrange(RIGHT, buff=0)
+                for i in range(img_np_clean.shape[0])
+            ]
+        ).arrange(DOWN, buff=0).scale(0.3).next_to(model, DOWN).shift(RIGHT*3)
+
+        # patchfy
+        patches_clean = VGroup()
+        for i in range(0, img_np_clean.shape[0], patch_size):
+            for j in range(0, img_np_clean.shape[1], patch_size):
+                patch = VGroup()
+                for di in range(patch_size):
+                    for dj in range(patch_size):
+                        if i + di < img_np_clean.shape[0] and j + dj < img_np_clean.shape[1]:
+                            patch.add(img_clean[i + di][j + dj])
+                patches_clean.add(patch)
+
+        self.playw(Transform(patches, patches_clean))
