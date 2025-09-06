@@ -438,7 +438,7 @@ $ cd src/pipeditable
 $ uv run manim main.py
 ```
 
-## 48. DiT4 (Membership contents)
+## 49. DiT4 (Membership contents)
 Looking into DiT official code
 [[YouTube link]](https://youtu.be/kE_kvOoZAX0) <br />
 ```bash
