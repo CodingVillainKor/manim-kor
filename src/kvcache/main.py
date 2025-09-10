@@ -6,67 +6,6 @@ seed(41)
 np.random.seed(41)
 
 
-class autoregressive(Scene3D):
-    def construct(self):
-        model = (
-            Rectangle(width=4.2, height=4.5, stroke_width=2, color=GREEN)
-            .shift(UP * 0.5)
-            .set_fill(BLACK, opacity=0.8)
-            .set_z_index(1)
-        )
-        model_tag = (
-            Text("GPT", font_size=24)
-            .next_to(model, LEFT)
-            .align_to(model, UP)
-            .set_opacity(0.6)
-        )
-        tilt_degree = PI / 6
-        VGroup(model, model_tag).rotate(tilt_degree, axis=UP)
-
-        sentence_str = (
-            "<SOS>  Some  call  me  nature,  others  call  me  mother  nature.  <EOS>"
-        )
-        sentence = Words(sentence_str, font_size=18).next_to(model, DOWN)
-        sentence.save_state()
-        for word in sentence.words:
-            word.rotate(PI / 2)
-        sentence.words[0].set_color(YELLOW)
-        sentence.words[-1].set_color(YELLOW)
-        sentence.words.arrange(RIGHT, aligned_edge=UP, buff=0.2).next_to(
-            model, DOWN
-        ).rotate(tilt_degree, axis=UP)
-        self.playw(FadeIn(model, model_tag))
-
-        output = (
-            Tensor(len(sentence.words), shape="square", arrange=RIGHT, buff=0.1)
-            .scale(0.75)
-            .next_to(model, UP)
-            .rotate(tilt_degree, axis=UP)
-        )
-
-        self.playw(FadeIn(sentence.words[0]))
-
-        for i in range(len(sentence.words) - 1):
-            model_in = sentence.words[: i + 1].copy()
-            self.playw(model_in.animate.become(output[: i + 1].copy()))
-            last = model_in[-1]
-            future = sentence.words[i + 1]
-            self.playw(
-                last.animate.become(future.copy().move_to(last).align_to(last, DOWN))
-            )
-            model.set_z_index(-1)
-            self.playw(
-                Transform(
-                    last,
-                    future.copy(),
-                    path_arc=-PI / 4,
-                    replace_mobject_with_target_in_scene=True,
-                ),
-                FadeOut(model_in[:-1]),
-            )
-            model.set_z_index(1)
-
-
 class attention(Scene3D):
     def construct(self):
         seq = Tensor(5, shape="square", arrange=RIGHT, buff=0.1)
@@ -139,9 +78,9 @@ class attention(Scene3D):
 
         tilt_angle = -PI / 3
         q_seq.generate_target().move_to(ORIGIN).shift(UP * 2)
-        k_seq.generate_target().move_to(ORIGIN).rotate(tilt_angle, axis=UP).shift(LEFT)
+        k_seq.generate_target().move_to(ORIGIN).rotate(tilt_angle, axis=UP).shift(RIGHT*0.4)
         v_seq.generate_target().move_to(ORIGIN).rotate(tilt_angle, axis=UP).shift(
-            DOWN + LEFT
+            DOWN + RIGHT*0.4
         )
         self.playw(
             MoveToTarget(ws),
@@ -153,14 +92,15 @@ class attention(Scene3D):
             VGroup(
                 *[
                     DecimalNumber(item, num_decimal_places=1)[1:]
-                    for item in [0.7, 0.1, 0.2, 0.0, 0.0]
+                    for item in [0.1, 0.1, 0.2, 0.6, 0.0]
                 ]
             )
             .arrange(RIGHT)
             .rotate(tilt_angle, axis=UP)
             .move_to(k_seq)
         )
-        qs_ = VGroup(*[q_seq[0].copy() for _ in range(5)])
+        k_softmax[-1].set_opacity(0.2)
+        qs_ = VGroup(*[q_seq[3].copy() for _ in range(5)])
         qs_.generate_target()
         for i in range(len(qs_)):
             qs_.target[i].rotate(tilt_angle, axis=UP).move_to(k_seq[i])
@@ -297,7 +237,380 @@ class queryParallel(Scene3D):
 
         self.playwl(
             *[
-                Indicate(VGroup(q_seq[i], keys[i], values[i], srects[i]), scale_factor=1.1)
+                Indicate(
+                    VGroup(q_seq[i], keys[i], values[i], srects[i]), scale_factor=1.1
+                )
                 for i in range(3)
-            ], lag_ratio=0.5
+            ],
+            lag_ratio=0.5,
         )
+
+
+class woKVcache(Scene3D):
+    def construct(self):
+        llm = TextBox(
+            "LLM",
+            text_kwargs={"font_size": 32},
+            box_kwargs={
+                "fill_color": BLACK,
+                "fill_opacity": 0.7,
+                "stroke_width": 3,
+                "color": GREY_B,
+            },
+        ).shift(UP * 1.3)
+        llm.set_z_index(1)
+        llm.box.stretch_to_fit_height(4).stretch_to_fit_width(6)
+        llm.text.next_to(llm.box, LEFT, buff=0.1).align_to(llm.box, UP)
+        self.addw(llm)
+        sentence_str = "which is better, ChatGPT or Claude? <Response>"
+        sentence = Words(sentence_str, font_size=24).next_to(llm, DOWN)
+        sentence.save_state()
+        for word in sentence.words:
+            word.rotate(PI / 2)
+        sentence.words[-1].set_color(YELLOW)
+        sentence.words.arrange(RIGHT, aligned_edge=UP, buff=0.4).next_to(llm, DOWN)
+        self.playw(FadeIn(sentence))
+
+        model_in = (
+            Tensor(len(sentence.words), shape="square", arrange=RIGHT, buff=0.25)
+            .align_to(sentence, UP)
+            .align_to(sentence, LEFT)
+        )
+        self.play(Transform(sentence.words, model_in))
+        self.play(sentence.words.animate.shift(UP))
+        llm.text.add_updater(
+            lambda m: m.next_to(llm.box, LEFT, buff=0.1).align_to(llm.box, UP)
+        )
+        self.playw(
+            llm.box.animate.scale(3.5).align_to(llm.box).shift(UP * 0.5).set_opacity(0)
+        )
+        llm.text.suspend_updating()
+        self.remove(llm)
+
+        lbrace = Brace(sentence.words, DOWN, buff=0.25)
+        ltext = Text("L").next_to(lbrace, DOWN, buff=0.1)
+        self.playw(FadeIn(lbrace, ltext))
+        self.playw(FadeOut(lbrace, ltext))
+
+        q_w = TexBox(
+            "W",
+            "_Q",
+            tex_kwargs={"font_size": 48},
+            box_kwargs={
+                "stroke_width": 3,
+                "stroke_color": GREY_B,
+                "fill_opacity": 1,
+                "fill_color": BLACK,
+            },
+        )
+        k_w = TexBox(
+            "W",
+            "_K",
+            tex_kwargs={"font_size": 48},
+            box_kwargs={
+                "stroke_width": 3,
+                "stroke_color": GREY_B,
+                "fill_opacity": 1,
+                "fill_color": BLACK,
+            },
+        )
+        v_w = TexBox(
+            "W",
+            "_V",
+            tex_kwargs={"font_size": 48},
+            box_kwargs={
+                "stroke_width": 3,
+                "stroke_color": GREY_B,
+                "fill_opacity": 1,
+                "fill_color": BLACK,
+            },
+        )
+        VGroup(q_w.tex[-1], k_w.tex[-1], v_w.tex[-1]).set_color(YELLOW)
+        q_w.set_z_index(1)
+        k_w.set_z_index(1)
+        v_w.set_z_index(1)
+        VGroup(q_w, k_w, v_w).arrange(UP, buff=0.5)
+        self.play(
+            sentence.words.animate.arrange(RIGHT, buff=0.1).next_to(q_w, LEFT),
+            run_time=0.5,
+        )
+        self.play(FadeIn(q_w, k_w, v_w))
+        q_seq = Tensor(
+            len(sentence.words), shape="square", arrange=RIGHT, buff=0.25
+        ).next_to(q_w, RIGHT, buff=0.5)
+        k_seq = Tensor(
+            len(sentence.words), shape="square", arrange=RIGHT, buff=0.25
+        ).next_to(k_w, RIGHT, buff=0.5)
+        v_seq = Tensor(
+            len(sentence.words), shape="square", arrange=RIGHT, buff=0.25
+        ).next_to(v_w, RIGHT, buff=0.5)
+        self.play(
+            Transform(
+                sentence.words.copy(), q_seq, replace_mobject_with_target_in_scene=True
+            )
+        )
+        self.play(sentence.words.animate.next_to(k_w, LEFT), run_time=0.5)
+        self.play(
+            Transform(
+                sentence.words.copy(), k_seq, replace_mobject_with_target_in_scene=True
+            )
+        )
+        self.play(sentence.words.animate.next_to(v_w, LEFT), run_time=0.5)
+        self.play(
+            Transform(
+                sentence.words.copy(), v_seq, replace_mobject_with_target_in_scene=True
+            ),
+            FadeOut(sentence.words),
+        )
+        self.playwl(
+            FadeOut(q_w, k_w, v_w, shift=LEFT),
+            VGroup(q_seq, k_seq, v_seq).animate.move_to(ORIGIN),
+            lag_ratio=0.5,
+        )
+        tilt_angle = -PI / 2.9
+        adaptive_angle = lambda i: tilt_angle * (
+            1 + 0.4 * i / (len(sentence.words) - 2)
+        )
+        keys = VGroup(*[k_seq.copy() for i in range(len(sentence.words) - 1)]).arrange(
+            RIGHT, buff=-2.4
+        )
+        keys = VGroup(k_seq, *keys)
+        keys[0].set_z_index(1)
+        for i, k in enumerate(keys[1:], 1):
+            k.rotate(adaptive_angle(i - 1), axis=UP)
+
+        values = VGroup(
+            *[v_seq.copy() for _ in range(len(sentence.words) - 1)]
+        ).arrange(RIGHT, buff=-2.4)
+        values = VGroup(v_seq, *values)
+        for i, v in enumerate(values[1:], 1):
+            v.rotate(adaptive_angle(i - 1), axis=UP)
+        self.play(
+            keys[0].animate.rotate(tilt_angle, axis=UP).shift(LEFT * 5.7),
+            values[0].animate.rotate(tilt_angle, axis=UP).shift(LEFT * 5.7),
+        )
+        keys[1:].next_to(keys[0], RIGHT, buff=-0.15)
+        values[1:].next_to(values[0], RIGHT, buff=-0.15)
+        self.playw(
+            *[FadeIn(item, target_position=k_seq) for item in keys[1:]],
+            *[FadeIn(item, target_position=v_seq) for item in values[1:]],
+            q_seq.animate.arrange(RIGHT, buff=1.5).align_to(q_seq, DOWN),
+        )
+
+        keys.set_z_index(1)
+
+        qs = VGroup(
+            *[
+                q_seq[i].copy()
+                for i in range(len(sentence.words))
+                for _ in range(len(keys[i]))
+            ]
+        )
+        qs.generate_target()
+        for i in range(len(sentence.words)):
+            for j in range(len(keys[i])):
+                qs.target[i * len(keys[i]) + j].rotate(
+                    adaptive_angle(i), axis=UP
+                ).move_to(keys[i][j])
+        self.play(MoveToTarget(qs))
+
+        softmaxes = VGroup()
+        # softmax weight be Dot(), not DecimalNumber
+        for i in range(len(sentence.words)):
+            softmax_i = VGroup()
+            for j in range(len(keys[i])):
+                w = (
+                    Dot(radius=0.1, color=random_bright_color())
+                    .move_to(keys[i][j])
+                    .scale(0.5)
+                )
+                w.set_opacity(1 if j <= i else 0.1)
+                softmax_i.add(w)
+            softmaxes.add(softmax_i)
+        self.playw(FadeTransform(VGroup(keys, qs), softmaxes))
+        values.save_state()
+        q_seq.save_state()
+        total_brace = Brace(
+            VGroup(softmaxes[0][3], softmaxes[-1][3]), UP, color=RED, buff=0.2
+        )
+        total_text = Text("L", color=RED).next_to(total_brace, UP, buff=0.1)
+        each_brace = VGroup(
+            *[
+                Brace(softmaxes[i], DOWN, color=GREEN, buff=0.1)
+                for i in range(len(softmaxes))
+            ]
+        )
+        each_text = VGroup(
+            *[
+                Text("L", color=GREEN, font_size=32).next_to(
+                    each_brace[i], DOWN, buff=0.1
+                )
+                for i in range(len(each_brace))
+            ]
+        )
+        self.playw(
+            values.animate.shift(UP),
+            q_seq.animate.shift(DOWN),
+            FadeIn(total_brace, total_text),
+            *[FadeIn(each_text[i]) for i in range(len(each_brace))],
+        )
+
+        self.playwl(
+            FadeOut(total_brace, total_text, each_text),
+            Restore(values),
+            Restore(q_seq),
+            lag_ratio=0.4,
+        )
+        softmaxes.set_z_index(1)
+        self.play(
+            *[softmaxes[i].animate.move_to(values[i]) for i in range(len(values))]
+        )
+        out = Tensor(len(sentence.words), shape="square", arrange=RIGHT)
+        for i, o in enumerate(out):
+            o.rotate(adaptive_angle(i), axis=UP).move_to(values[i])
+        sigmas = VGroup(
+            *[
+                MathTex("\\Sigma", font_size=64, color=YELLOW)
+                .move_to(values[i])
+                .set_opacity(0.7)
+                for i in range(len(values))
+            ]
+        )
+        self.play(
+            *[
+                FadeTransform(VGroup(values[i], softmaxes[i]), out[i])
+                for i in range(len(out))
+            ],
+            *[FadeOut(sigmas[i], scale=2) for i in range(len(sigmas))],
+            rate_func=rush_from,
+        )
+        self.playw(
+            *[
+                out[i]
+                .animate.rotate(-adaptive_angle(i), axis=UP)
+                .align_to(q_seq[i], LEFT)
+                for i in range(len(out))
+            ]
+        )
+
+        attn = TextBox(
+            "Self-Attn",
+            text_kwargs={"font_size": 32},
+            box_kwargs={
+                "fill_color": BLACK,
+                "fill_opacity": 0.7,
+                "stroke_width": 3,
+                "color": GREY_B,
+            },
+        )
+        attn.set_z_index(1)
+        attn.box.stretch_to_fit_height(5).stretch_to_fit_width(14)
+        attn.text.next_to(attn.box, LEFT, buff=0.1).align_to(attn.box, UP)
+        self.playwl(self.cf.animate.shift(OUT * 7), FadeIn(attn), lag_ratio=0.7, wait=0)
+        self.playw(out.animate.next_to(attn.box, UP, buff=1))
+
+        self.playw(FadeOut(attn, q_seq))
+
+        llm = TextBox(
+            "LLM",
+            text_kwargs={"font_size": 32},
+            box_kwargs={
+                "fill_color": BLACK,
+                "fill_opacity": 0.7,
+                "stroke_width": 3,
+                "color": GREY_B,
+            },
+        ).shift(UP * 3)
+        llm.set_z_index(1)
+        llm.box.stretch_to_fit_height(9).stretch_to_fit_width(13)
+        llm.text.next_to(llm.box, LEFT, buff=0.1).align_to(llm.box, UP)
+        self.play(FadeIn(llm))
+        llm_ = TextBox(
+            "LLM",
+            text_kwargs={"font_size": 32},
+            box_kwargs={
+                "fill_color": BLACK,
+                "fill_opacity": 0.7,
+                "stroke_width": 3,
+                "color": GREY_B,
+            },
+        )
+        llm_.set_z_index(1)
+        llm_.box.stretch_to_fit_height(6).stretch_to_fit_width(13)
+        llm_.text.next_to(llm_.box, LEFT, buff=0.1).align_to(llm_.box, UP)
+        self.playw(llm.animate.become(llm_), out.animate.shift(DOWN * 4))
+        self.playw(out.animate.next_to(llm.box, UP, buff=1))
+
+        self.wait(3)
+
+        response_str = "I prefer Claude because its writing is more natural."
+        response = Words(response_str, font_size=32).next_to(llm, DOWN)
+        response.save_state()
+        # for word in response.words:
+        #     word.rotate(PI / 2)
+        response.words[0].move_to(out[-1]).align_to(out[-1], DOWN)
+
+        self.playw(
+            Transform(
+                out[-1], response.words[0], replace_mobject_with_target_in_scene=True
+            ),
+            FadeOut(out[:-1]),
+        )
+
+
+class autoregressive(Scene3D):
+    def construct(self):
+        model = (
+            Rectangle(width=8.2, height=4.5, stroke_width=2, color=GREEN)
+            .shift(UP * 0.5)
+            .set_fill(BLACK, opacity=0.8)
+            .set_z_index(1)
+        )
+        model_tag = (
+            Text("LLM", font_size=24)
+            .next_to(model, LEFT)
+            .align_to(model, UP)
+            .set_opacity(0.6)
+        )
+        tilt_degree = PI / 6
+        VGroup(model, model_tag).rotate(tilt_degree, axis=UP)
+
+        sentence_str = "which is better, ChatGPT or Claude? <Response> I prefer Claude because its writing is more natural."
+        sentence = Words(sentence_str, font_size=18).next_to(model, DOWN)
+        sentence.save_state()
+        for word in sentence.words:
+            word.rotate(PI / 2)
+        sentence.words[6].set_color(YELLOW)
+        sentence.words.arrange(RIGHT, aligned_edge=UP, buff=0.2).next_to(
+            model, DOWN
+        ).rotate(tilt_degree, axis=UP)
+        self.playw(FadeIn(model, model_tag))
+
+        output = (
+            Tensor(len(sentence.words), shape="square", arrange=RIGHT, buff=0.1)
+            .scale(0.75)
+            .next_to(model, UP)
+            .rotate(tilt_degree, axis=UP)
+        )
+
+        self.playw(FadeIn(sentence.words[0]))
+
+        for i in range(len(sentence.words) - 1):
+            model_in = sentence.words[: i + 1].copy()
+            self.play(model_in.animate.become(output[: i + 1].copy()))
+            last = model_in[-1]
+            future = sentence.words[i + 1]
+            self.play(
+                last.animate.become(future.copy().move_to(last).align_to(last, DOWN))
+            )
+            model.set_z_index(-1)
+            self.playw(
+                Transform(
+                    last,
+                    future.copy(),
+                    path_arc=-PI / 4,
+                    replace_mobject_with_target_in_scene=True,
+                ),
+                FadeOut(model_in[:-1]),
+            )
+            model.set_z_index(1)
