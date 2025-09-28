@@ -461,3 +461,11 @@ How prefill works with KV cache
 $ cd src/prefill
 $ uv run manim main.py
 ```
+
+## 52. \*\*keyword arguments
+\*\*keyword arguments in deep learning
+[[YouTube link]](https://youtu.be/D4DUd9EoM6s) <br />
+```bash
+$ cd src/kwargs2025
+$ uv run manim main.py
+```
