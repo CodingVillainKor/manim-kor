@@ -230,5 +230,48 @@ class multimodel(Scene2D):
         self.wait(3)
 
         self.playw(c.code[10].animate.set_opacity(1))
-        self.playw(c.code[1:3].animate.set_opacity(1), c.code[3:].animate.set_opacity(0.3))
+        self.playw(
+            c.code[1:3].animate.set_opacity(1), c.code[3:].animate.set_opacity(0.3)
+        )
 
+
+class outro(Scene2D):
+    def construct(self):
+        # continue from multimodel's last frame
+        c = PythonCode("src/multi.py").scale(0.8).shift(UP * 0.3).shift(LEFT * 2.5)
+        VGroup(c.code[0], c.code[3:]).set_opacity(0.3)
+
+        m1 = PythonCode("src/Model1.py").scale(0.6)
+        m2 = PythonCode("src/Model2.py").scale(0.6)
+        ms = VGroup(m1, m2).arrange(DOWN, buff=1).next_to(c, RIGHT, buff=0.3)
+
+        self.addw(c, m1, m2)
+
+        m3 = PythonCode("src/Model3.py").scale(0.6)
+        ms.add(m3)
+        ms.generate_target()
+        ms.target.arrange(DOWN, buff=0.5, aligned_edge=LEFT).align_to(m1, LEFT)
+        ms[-1].move_to(ms.target[-1]).set_opacity(0)
+        self.playw(MoveToTarget(ms))
+
+        c3 = PythonCode("src/multi_.py").scale(0.8).move_to(c)
+        VGroup(c3.code[0], c3.code[9:]).set_opacity(0.3)
+        self.playw(
+            c.frame.animate.become(c3.frame),
+            c.code[:7].animate.become(c3.code[:7]),
+            c.code[7:].animate.become(c3.code[8:]),
+            FadeIn(c3.code[7]),
+        )
+
+        self.playwl(
+            m1.text_slice(2, "n_").animate.set_opacity(0),
+            m1.text_slice(2, "layers, hidden_dim):").animate.align_to(
+                m1.text_slice(2, "n_"), LEFT
+            ),
+            lag_ratio=0.5
+        )
+
+        self.play(c.code[-2].animate.set_opacity(1))
+        self.playw(
+            ApplyWave(c.text_slice(11, '**config["model_config"]'), amplitude=0.1)
+        )
