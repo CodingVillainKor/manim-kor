@@ -1,0 +1,3 @@
+class Model3:
+    def __init__(self, dim):
+        ...
