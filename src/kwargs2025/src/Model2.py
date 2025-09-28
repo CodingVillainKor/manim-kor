@@ -1,0 +1,3 @@
+class Model2:
+    def __init__(self, n_embed, hidden_dim):
+        ...

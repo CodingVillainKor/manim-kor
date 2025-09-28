@@ -1,0 +1,3 @@
+class Model1:
+    def __init__(self, n_layers, hidden_dim):
+        ...
