@@ -469,3 +469,11 @@ $ uv run manim main.py
 $ cd src/kwargs2025
 $ uv run manim main.py
 ```
+
+## 53. Generator for EDA
+Generator let you EDA faster
+[[YouTube link]](https://youtu.be/5GYw5sPskvA) <br />
+```bash
+$ cd src/generator_data
+$ uv run manim main.py
+```
