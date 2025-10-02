@@ -477,3 +477,11 @@ Generator let you EDA faster
 $ cd src/generator_data
 $ uv run manim main.py
 ```
+
+## 54. hydra3
+instantiate is cool
+[[YouTube link]](https://youtu.be/S5xSpWTeIA0) <br />
+```bash
+$ cd src/hydra3
+$ uv run manim main.py
+```
