@@ -1,0 +1,3 @@
+model:
+  _target_: models.Transformer
+  dim: 256
