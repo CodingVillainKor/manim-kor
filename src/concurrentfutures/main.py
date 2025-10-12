@@ -148,7 +148,7 @@ class img1(Scene2D):
         for anim, line in anims:
             if line == 4:
                 file = (
-                    File(size=0.3)
+                    FileIcon(size=0.3)
                     .move_to(code.code[3][-1])
                     .shift(DOWN * 0.2)
                     .set_opacity(0.4)

@@ -111,7 +111,7 @@ class preprocessPattern(Scene3D):
         self.playw(FadeIn(folder))
         num_row, num_col = 5, 7
         files = (
-            VGroup(*[File(size=0.3) for i in range(num_row) for j in range(num_col)])
+            VGroup(*[FileIcon(size=0.3) for i in range(num_row) for j in range(num_col)])
             .arrange_in_grid(rows=num_row, cols=num_col, buff=0.2)
             .move_to(folder[1])
         )
@@ -215,7 +215,7 @@ class preprocessPattern(Scene3D):
         self.playw(FadeIn(prep_folder))
 
         prep_files = (
-            VGroup(*[File(size=0.3) for i in range(num_row) for j in range(num_col)])
+            VGroup(*[FileIcon(size=0.3) for i in range(num_row) for j in range(num_col)])
             .arrange_in_grid(rows=num_row, cols=num_col, buff=0.2)
             .move_to(prep_folder[1])
         )
@@ -384,7 +384,7 @@ class second(Scene3D):
         )
         self.wait(10)
         file = (
-            FileIcon("preprocessed/file.txt")
+            File("preprocessed/file.txt")
             .scale(0.5)
             .move_to(folder[1])
             .set_opacity(0.3)
@@ -424,7 +424,7 @@ class second(Scene3D):
         )
         folder_data = VGroup(folder_data, folder_data_rect).move_to(total.target[0][0]).shift(RIGHT*2.5)
         data_files = (
-            VGroup(*[File(size=0.3) for i in range(5) for j in range(7)])
+            VGroup(*[FileIcon(size=0.3) for i in range(5) for j in range(7)])
             .arrange_in_grid(rows=5, cols=7, buff=0.2)
             .move_to(folder_data[1])
         )

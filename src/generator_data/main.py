@@ -8,7 +8,7 @@ np.random.seed(41)
 
 class intro(Scene2D):
     def construct(self):
-        data = VGroup(*[File(size=0.25) for _ in range(45)]).arrange_in_grid(
+        data = VGroup(*[FileIcon(size=0.25) for _ in range(45)]).arrange_in_grid(
             5, 9, buff=0.2
         )
         dot3 = Text("...", font_size=72).rotate(-PI / 4).next_to(data, DR)

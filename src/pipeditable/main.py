@@ -98,7 +98,7 @@ class pipinstalleditable(Scene2D):
         self.playw(FadeIn(cwdf, cwdd, mypkg, sp))
 
         symbolic_link = (
-            FileIcon("mypkg.egg-link").scale(0.75).next_to(sp, DOWN, buff=0.2)
+            File("mypkg.egg-link").scale(0.75).next_to(sp, DOWN, buff=0.2)
         )
         self.play(
             Transform(
@@ -148,7 +148,7 @@ class difference(Scene2D):
         mypkgt = FolderIcon("mypkg/").next_to(cwddt, DOWN).scale(0.7)
         spt = FolderIcon("site-packages/").next_to(cwddt, RIGHT, buff=4)
         symbolic_link = (
-            FileIcon("mypkg.egg-link").scale(0.75).next_to(spt, DOWN, buff=0.2)
+            File("mypkg.egg-link").scale(0.75).next_to(spt, DOWN, buff=0.2)
         )
 
         cwdtb = Folder().scale(0.125).shift(DOWN + LEFT * 3.5)

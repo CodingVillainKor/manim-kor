@@ -200,7 +200,7 @@ class whygitmerge(Scene3D):
         b1.set_color(GREEN).set_fill(opacity=0)
         self.playw(FadeIn(bline, b1), wait=3)
         load_file = (
-            VGroup(Text("Load", font_size=24, color=GREEN), File(size=0.2))
+            VGroup(Text("Load", font_size=24, color=GREEN), FileIcon(size=0.2))
             .arrange(RIGHT, buff=0.1)
             .next_to(b1, RIGHT)
         )
@@ -434,7 +434,7 @@ class mergeReverse(Scene2D):
         self.playw(Circumscribe(VGroup(bc1, bc2, arrbc1, arrbc2), color=GREEN_D))
 
         load_file = (
-            VGroup(Text("Load", font_size=24, color=GREEN), File(size=0.2))
+            VGroup(Text("Load", font_size=24, color=GREEN), FileIcon(size=0.2))
             .arrange(RIGHT, buff=0.2)
             .next_to(VGroup(arrbc1, arrbc2), DOWN)
         )

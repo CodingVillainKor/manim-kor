@@ -101,7 +101,7 @@ class whatisuv(Scene2D):
         )
         self.playw(FadeOut(pkg3))
 
-        uvlock = File().shift(RIGHT * 3.5).scale(1.5).shift(DOWN * 0.5)
+        uvlock = FileIcon().shift(RIGHT * 3.5).scale(1.5).shift(DOWN * 0.5)
         self.playw(FadeIn(uvlock))
         numpyver = Text("numpy==1.23.5", font_size=24, color=BLACK)
         pandasver = Text("pandas==1.5.3", font_size=24, color=BLACK)
@@ -136,8 +136,8 @@ class whyuvlock(Scene2D):
         )
 
         slices = [title[:3], title[3:11], title[11:]]
-        uvlock = FileIcon("uv.lock").next_to(slices[1], UP)
-        pyproject = FileIcon("pyproject.toml").next_to(slices[2], UP)
+        uvlock = File("uv.lock").next_to(slices[1], UP)
+        pyproject = File("pyproject.toml").next_to(slices[2], UP)
         self.play(
             LaggedStart(
                 *[FadeIn(c) for c in slices],
@@ -189,10 +189,10 @@ class outro(Scene3D):
         )
 
         venv = FolderIcon(".venv/").scale(1.2).shift(UP * 0.5 + LEFT * 3)
-        pyproject = FileIcon("pyproject.toml")
+        pyproject = File("pyproject.toml")
         pyproject[0].scale(6)
         pyproject.arrange(DOWN)
-        uvlock = FileIcon("uv.lock")
+        uvlock = File("uv.lock")
         uvlock[0].scale(6)
         uvlock.arrange(DOWN).shift(RIGHT * 3.5 + DOWN * 0.5)
 

@@ -354,9 +354,9 @@ class saveaddcommit(Scene3D):
                 lag_ratio=0.3,
             )
         )
-        mainpy0 = FileIcon("main.py")
-        utilpy0 = FileIcon("util.py")
-        modulepy0 = FileIcon("module.py")
+        mainpy0 = File("main.py")
+        utilpy0 = File("util.py")
+        modulepy0 = File("module.py")
         commit1 = (
             VGroup(mainpy0, utilpy0, modulepy0).arrange(RIGHT, buff=0.5).move_to(before)
         )

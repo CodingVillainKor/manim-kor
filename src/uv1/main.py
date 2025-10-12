@@ -159,8 +159,8 @@ class preview(Scene2D):
 
 
         venv = FolderIcon(".venv/").scale(0.8)
-        pyprojecttoml = FileIcon("pyproject.toml").scale(0.8)
-        uvlock = FileIcon("uv.lock").scale(0.8)
+        pyprojecttoml = File("pyproject.toml").scale(0.8)
+        uvlock = File("uv.lock").scale(0.8)
         cores = (
             VGroup(venv, pyprojecttoml, uvlock)
             .arrange(DOWN, buff=0.3, aligned_edge=LEFT)
