@@ -63,7 +63,7 @@ class pipinstall(Scene2D):
         )
         cwd = Text("~/prj$", font_size=24, font=MONO_FONT).next_to(cmd, LEFT)
 
-        cwdf = wow().scale(0.125).next_to(cwd, LEFT, buff=0.15)
+        cwdf = FolderIcon().scale(0.125).next_to(cwd, LEFT, buff=0.15)
         self.playw(FadeIn(cwd))
         mypkg = (
             Folder("mypkg/")
@@ -90,7 +90,7 @@ class pipinstalleditable(Scene2D):
         cmd.words[2].set_color(PURE_GREEN)
         cwd = Text("~/prj$", font_size=24, font=MONO_FONT).next_to(cmd, LEFT)
 
-        cwdf = wow().scale(0.125).next_to(cwd, UP, buff=2).shift(LEFT * 1.5)
+        cwdf = FolderIcon().scale(0.125).next_to(cwd, UP, buff=2).shift(LEFT * 1.5)
         cwdd = Text("~/prj/", font_size=24, font=MONO_FONT).next_to(cwdf, RIGHT)
         mypkg = Folder("mypkg/").next_to(cwdd, DOWN).scale(0.7)
         sp = Folder("site-packages/").next_to(cwdf, RIGHT, buff=4)
@@ -143,7 +143,7 @@ class pipinstalleditable(Scene2D):
 
 class difference(Scene2D):
     def construct(self):
-        cwdft = wow().scale(0.125).shift(UP * 2.5 + LEFT * 3.5)
+        cwdft = FolderIcon().scale(0.125).shift(UP * 2.5 + LEFT * 3.5)
         cwddt = Text("~/prj/", font_size=24, font=MONO_FONT).next_to(cwdft, RIGHT)
         mypkgt = Folder("mypkg/").next_to(cwddt, DOWN).scale(0.7)
         spt = Folder("site-packages/").next_to(cwddt, RIGHT, buff=4)
@@ -151,7 +151,7 @@ class difference(Scene2D):
             File("mypkg.egg-link").scale(0.75).next_to(spt, DOWN, buff=0.2)
         )
 
-        cwdtb = wow().scale(0.125).shift(DOWN + LEFT * 3.5)
+        cwdtb = FolderIcon().scale(0.125).shift(DOWN + LEFT * 3.5)
         cwddb = Text("~/prj/", font_size=24, font=MONO_FONT).next_to(cwdtb, RIGHT)
         mypkgb = Folder("mypkg/").next_to(cwddb, DOWN).scale(0.7)
         spb = Folder("site-packages/").next_to(cwddb, RIGHT, buff=4)

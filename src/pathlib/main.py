@@ -104,7 +104,7 @@ class preprocessPattern(Scene3D):
         self.playw(FadeIn(scene1, scene2, scene3))
 
         # about scene1
-        folder = FolderIcon(text="data/").scale(0.7)
+        folder = Folder(text="data/").scale(0.7)
         folder_rect = Rectangle(width=4, height=3, color=YELLOW_B)
         folder.next_to(folder_rect, UP, buff=0.1).align_to(folder_rect, LEFT)
         folder = VGroup(folder, folder_rect).shift(RIGHT * 2.5)
@@ -206,7 +206,7 @@ class preprocessPattern(Scene3D):
         self.wait()
 
         # about scene3
-        prep_folder = FolderIcon(text="preprocessed/").scale(0.7)
+        prep_folder = Folder(text="preprocessed/").scale(0.7)
         prep_folder_rect = Rectangle(width=4, height=3, color=GREEN_B)
         prep_folder.next_to(prep_folder_rect, UP, buff=0.1).align_to(
             prep_folder_rect, LEFT
@@ -358,7 +358,7 @@ class second(Scene3D):
         self.move_camera_horizontally(0, zoom=1.5)
         self.playw(data.animate.scale(0.7).shift(LEFT * 2))
 
-        folder = FolderIcon(text="preprocessed/").scale(0.7)
+        folder = Folder(text="preprocessed/").scale(0.7)
         folder_rect = Rectangle(width=4, height=3, color=GREEN_B)
         folder.next_to(folder_rect, UP, buff=0.1).align_to(folder_rect, LEFT)
         folder = VGroup(folder, folder_rect).shift(RIGHT * 2)
@@ -417,7 +417,7 @@ class second(Scene3D):
         total.target.align_to(scene2, LEFT)
         total.target[0][-1].set_opacity(0.2).set_fill(opacity=0)
 
-        folder_data = FolderIcon(text="data/").scale(0.7)
+        folder_data = Folder(text="data/").scale(0.7)
         folder_data_rect = Rectangle(width=4, height=3, color=YELLOW_B, stroke_width=3)
         folder_data.next_to(folder_data_rect, UP, buff=0.1).align_to(
             folder_data_rect, LEFT

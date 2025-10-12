@@ -23,7 +23,7 @@ class intro(Scene2D):
         self.play(data.animate.set_opacity(1))
         self.playw(FadeIn(dot3))
 
-        folder = Folder(size=1).next_to(data, UP, buff=0.5)
+        folder = FolderIcon(size=1).next_to(data, UP, buff=0.5)
         self.play(FadeIn(folder))
         self.play(
             *[item.animate.move_to(folder) for item in data],
@@ -99,7 +99,7 @@ class generator(Scene2D):
         self.addw(half_line, listt, gent)
         self.playw(Restore(self.cf), run_time=2)
 
-        folder = Folder(size=1).shift(UP * 2)
+        folder = FolderIcon(size=1).shift(UP * 2)
         foldert = (
             Text("data/", font=MONO_FONT, font_size=18, color=BLACK)
             .move_to(folder[0])
