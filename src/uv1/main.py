@@ -8,11 +8,11 @@ np.random.seed(41)
 
 class storage(Scene2D):
     def construct(self):
-        homeuser = FolderIcon("/home/user/")
+        homeuser = Folder("/home/user/")
         self.addw(homeuser)
-        prj1 = FolderIcon("prj1/")
-        prj2 = FolderIcon("prj2/")
-        prj3 = FolderIcon("prj3/")
+        prj1 = Folder("prj1/")
+        prj2 = Folder("prj2/")
+        prj3 = Folder("prj3/")
         prjs = VGroup(prj1, prj2, prj3).shift(LEFT)
         prjs.arrange(DOWN, buff=0.5)
 
@@ -32,7 +32,7 @@ class storage(Scene2D):
         command2 = get_command().next_to(prj2, RIGHT, buff=0.5)
         command3 = get_command().next_to(prj3, RIGHT, buff=0.5)
         commands = VGroup(command1, command2, command3)
-        get_venv = lambda: FolderIcon(".venv/").scale(0.8)
+        get_venv = lambda: Folder(".venv/").scale(0.8)
         venv1 = get_venv().next_to(prj1, RIGHT, buff=0.5)
         venv2 = get_venv().next_to(prj2, RIGHT, buff=0.5)
         venv3 = get_venv().next_to(prj3, RIGHT, buff=0.5)
@@ -53,7 +53,7 @@ class storage(Scene2D):
         )
 
         anaconda = (
-            FolderIcon("~/anaconda3/envs/env")
+            Folder("~/anaconda3/envs/env")
             .scale(1.3)
             .next_to(venv3, DOWN, buff=0.75)
         )
@@ -158,7 +158,7 @@ class preview(Scene2D):
         self.playw(FadeIn(title1))
 
 
-        venv = FolderIcon(".venv/").scale(0.8)
+        venv = Folder(".venv/").scale(0.8)
         pyprojecttoml = File("pyproject.toml").scale(0.8)
         uvlock = File("uv.lock").scale(0.8)
         cores = (

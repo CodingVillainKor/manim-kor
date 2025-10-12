@@ -76,19 +76,19 @@ class whatisuv(Scene2D):
             )
         )
         prj_folder = (
-            FolderIcon("project/")
+            Folder("project/")
             .scale(1.2)
             .next_to(words[0], UP, buff=0.1)
             .align_to(words[0], LEFT)
         )
         pkg1 = (
-            FolderIcon("numpy/")
+            Folder("numpy/")
             .next_to(prj_folder, DOWN, buff=0.3)
             .align_to(prj_folder, LEFT)
             .shift(RIGHT * 0.5)
         )
-        pkg2 = FolderIcon("pandas/").next_to(pkg1, DOWN, buff=0.2).align_to(pkg1, LEFT)
-        pkg3 = FolderIcon("torch/").next_to(pkg2, DOWN, buff=0.2).align_to(pkg2, LEFT)
+        pkg2 = Folder("pandas/").next_to(pkg1, DOWN, buff=0.2).align_to(pkg1, LEFT)
+        pkg3 = Folder("torch/").next_to(pkg2, DOWN, buff=0.2).align_to(pkg2, LEFT)
 
         self.play(
             LaggedStart(
@@ -146,7 +146,7 @@ class whyuvlock(Scene2D):
         )
         self.playw(FadeIn(uvlock, shift=UP * 0.5), FadeIn(pyproject, shift=UP * 0.5))
 
-        venv = FolderIcon(".venv/").next_to(uvlock, LEFT, buff=0.5)
+        venv = Folder(".venv/").next_to(uvlock, LEFT, buff=0.5)
         self.playw(FadeIn(venv, shift=UP * 0.5), FadeOut(title))
         self.playw(
             VGroup(venv, uvlock, pyproject).animate.arrange(RIGHT, buff=0.75).scale(1.2)
@@ -188,7 +188,7 @@ class outro(Scene3D):
             "uv pip install", font_size=32, font="Noto Mono", color=YELLOW_B
         )
 
-        venv = FolderIcon(".venv/").scale(1.2).shift(UP * 0.5 + LEFT * 3)
+        venv = Folder(".venv/").scale(1.2).shift(UP * 0.5 + LEFT * 3)
         pyproject = File("pyproject.toml")
         pyproject[0].scale(6)
         pyproject.arrange(DOWN)
@@ -219,7 +219,7 @@ class outro(Scene3D):
             .move_to(uvlock[0])
             .shift(UP * 0.5)
         )
-        installed = FolderIcon("numpy/").next_to(venv, DOWN)
+        installed = Folder("numpy/").next_to(venv, DOWN)
         self.playw(
             FadeIn(package1, target_position=uvadd),
             FadeIn(package2, target_position=uvadd),

@@ -306,7 +306,7 @@ class File(VGroup):
         self.add(cut)
         self.add(folded_in)
 
-class Folder(VGroup):
+class FolderIcon(VGroup):
     def __init__(self, size=3):
         super().__init__()
         h, w = size * 9 / 16 * 1.3, size
@@ -326,8 +326,8 @@ class FileSystem(VGroup):
         folders_list = sorted(folders)
         files_list = sorted(files)
 
-        self._folders = VGroup(*[FolderIcon(f) for f in folders_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
-        self._files = VGroup(*[FileIcon(f) for f in files_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
+        self._folders = VGroup(*[Folder(f) for f in folders_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
+        self._files = VGroup(*[File(f) for f in files_list]).arrange(DOWN, buff=buff, aligned_edge=LEFT)
         self.add(self._folders, self._files)
         self.arrange(DOWN, buff=buff, aligned_edge=LEFT)
         self._frame = RoundedRectangle(0.2, height=self.height, width=self.width, color=GREY_C).surround(self, buff=1.25)
@@ -354,7 +354,7 @@ class FileSystem(VGroup):
     def tag(self):
         return self._tag
 
-class FolderIcon(VGroup):
+class Folder(VGroup):
     def __init__(self, text:str):
         super().__init__()
         self._icon = Folder(size=0.5)
@@ -370,7 +370,7 @@ class FolderIcon(VGroup):
     def text(self):
         return self._text
 
-class FileIcon(VGroup):
+class File(VGroup):
     def __init__(self, text:str):
         super().__init__()
         self._icon = File(size=0.4)
