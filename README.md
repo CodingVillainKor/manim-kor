@@ -485,3 +485,11 @@ instantiate is cool
 $ cd src/hydra3
 $ uv run manim main.py
 ```
+
+## 54. speculative decoding
+Speculative decoding for faster inference
+[[YouTube link]](https://youtu.be/v5al_cwvkJQ) <br />
+```bash
+$ cd src/spec_decoding
+$ uv run manim main.py
+```
