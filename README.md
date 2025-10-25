@@ -493,3 +493,11 @@ Speculative decoding for faster inference
 $ cd src/spec_decoding
 $ uv run manim main.py
 ```
+
+## 55. contextmanager with an example of timer
+contextmanager is defining a covering code block.
+[[YouTube link]](https://youtu.be/h1tEZVYFS8A) <br />
+```bash
+$ cd src/contextmanager
+$ uv run manim main.py
+```
