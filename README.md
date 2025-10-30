@@ -501,3 +501,11 @@ contextmanager is defining a covering code block.
 $ cd src/contextmanager
 $ uv run manim main.py
 ```
+
+## 56. EMA1
+The concept of Expnential Moving Average
+[[YouTube link]](https://youtu.be/KQ_xgw6kueo) <br />
+```bash
+$ cd src/ema1
+$ uv run manim main.py
+```
