@@ -518,3 +518,10 @@ $ cd src/ema2
 $ uv run manim main.py
 ```
 
+## 58. git worktree
+Git worktree for multiple branches
+[[YouTube link]](https://youtu.be/nV9NW899zE8) <br />
+```bash
+$ cd src/gitworktree
+$ uv run manim main.py
+```
