@@ -509,3 +509,12 @@ The concept of Expnential Moving Average
 $ cd src/ema1
 $ uv run manim main.py
 ```
+
+## 57. EMA2
+Exponential Moving Average in Deep Learning
+[[YouTube link]](https://youtu.be/_cCpG_3clK0) <br />
+```bash
+$ cd src/ema2
+$ uv run manim main.py
+```
+
