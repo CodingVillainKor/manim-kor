@@ -525,3 +525,19 @@ Git worktree for multiple branches
 $ cd src/gitworktree
 $ uv run manim main.py
 ```
+
+## 59. Shallow Copy
+Shallow copy makes a bug
+[[YouTube link]](https://youtu.be/FnSUjR57j-Q) <br />
+```bash
+$ cd src/shallowcopy
+$ uv run manim main.py
+```
+
+## 60. Radix sort
+Radix sort is O(n)
+[[YouTube link]](https://youtu.be/7mfJLJb10hg) <br />
+```bash
+$ cd src/radixsort
+$ uv run manim main.py
+```
