@@ -541,3 +541,11 @@ Radix sort is O(n)
 $ cd src/radixsort
 $ uv run manim main.py
 ```
+
+## 61. DiNO1
+Why DiNO is important?
+[[YouTube link]](https://youtu.be/r3UBbW0JoMI) <br />
+```bash
+$ cd src/dino1
+$ uv run manim main.py
+```
