@@ -469,7 +469,7 @@ class imageNext(Scene2D):
             .set_color_by_gradient(RED_A, RED_C)
             .next_to(img_mob, DOWN, buff=0.4)
         )
-        self.playw(FadeIn(redundancy, shift=DOWN*0.5), run_time=0.5)
+        self.playw(FadeIn(redundancy, shift=DOWN * 0.5), run_time=0.5)
         redundancy.generate_target()
         img_mob.generate_target()
         img_mob.target.arrange_in_grid(
@@ -483,13 +483,197 @@ class imageNext(Scene2D):
         background_indices = [2, 3, 4, 5, 10, 11, 18, 19, 24, 25, 26, 33, 34]
         background = Group(*[img_mob[i] for i in background_indices])
 
-        self.playw(background.animate.arrange(RIGHT, buff=0.15).next_to(img_mob, UP, buff=0.3))
+        self.playw(
+            background.animate.arrange(RIGHT, buff=0.15).next_to(img_mob, UP, buff=0.3)
+        )
 
-        shade = Rectangle(
-            width=30,
-            height=15,
-            color=BLACK,
-        ).set_fill(BLACK, opacity=0.75).set_z_index(9)
+        shade = (
+            Rectangle(
+                width=30,
+                height=15,
+                color=BLACK,
+            )
+            .set_fill(BLACK, opacity=0.75)
+            .set_z_index(9)
+        )
         self.playw(FadeIn(shade))
 
 
+class dinointro(Scene2D):
+    def construct(self):
+        model = (
+            Rectangle(width=3, height=2, color=YELLOW_B)
+            .set_fill(BLACK, opacity=0.85)
+            .set_z_index(1)
+        )
+        modelt = (
+            Text("Vision Model", font_size=28)
+            .set_color_by_gradient(YELLOW_A, YELLOW_C)
+            .move_to(model)
+            .set_z_index(2)
+        )
+        pretrain = (
+            Text("Pretrain", font="Noto Sans KR", font_size=36)
+            .set_color_by_gradient(BLUE_A, BLUE)
+            .next_to(model, DOWN)
+            .shift(LEFT * 2)
+        )
+        finetune = (
+            Text("Fine-tuning", font="Noto Sans KR", font_size=36)
+            .set_color_by_gradient(GREEN_A, GREEN)
+            .next_to(model, DOWN)
+            .shift(RIGHT * 2)
+        )
+        self.play(FadeIn(model), FadeIn(modelt))
+        self.playw(FadeIn(pretrain), FadeIn(finetune))
+        pt_exp = Words(
+            "시각적 정보에 대한 일반적인 이해", font_size=24, font="Noto Sans KR"
+        ).next_to(pretrain, DOWN, buff=0.3)
+        self.playwl(*[FadeIn(item) for item in pt_exp.words], lag_ratio=0.2)
+        self.playwl(
+            VGroup(pretrain, pt_exp).animate.set_opacity(0.3).set_color(PURE_RED)
+        )
+
+        model_exp = Words(
+            "한 모델이 다양한 작업을 잘 하지는 못함", font_size=24, font="Noto Sans KR"
+        ).next_to(model, UP, buff=0.3)
+        self.playwl(*[FadeIn(item) for item in model_exp.words], lag_ratio=0.2)
+
+        self.wait(5)
+
+        dino = (
+            Text("DiNO", font_size=36, font="Noto Sans KR")
+            .set_color_by_gradient(YELLOW_A, YELLOW_C)
+            .next_to(pretrain, LEFT, buff=0.3)
+        )
+        self.playw(FadeIn(dino, shift=LEFT * 0.3))
+
+        self.playwl(
+            FadeOut(model, modelt, pretrain, finetune, pt_exp, model_exp),
+            self.cf.animate.move_to(dino),
+            lag_ratio=0.3,
+        )
+        slt = (
+            Words("Self supervised Learning", font_size=32)
+            .set_color_by_gradient(YELLOW_A, YELLOW_C)
+            .next_to(dino, DOWN, buff=0.5)
+            .set_z_index(12)
+        )
+        self.playwl(*[FadeIn(item) for item in slt.words], lag_ratio=0.3)
+
+        self.play(VGroup(dino, slt).animate.shift(DOWN))
+
+        unlabeled_ = (
+            RoundedRectangle(width=6, height=3, corner_radius=0.3)
+            .set_color(BLUE_B)
+            .next_to(dino, UL, buff=0.5)
+        )
+        unlabeled_text = (
+            Text("Unlabeled Images", font_size=24)
+            .set_color_by_gradient(BLUE_A, BLUE)
+            .move_to(unlabeled_)
+        )
+        unlabeled = RoundedRectangle(width=20, height=10, corner_radius=0.3).set_color(
+            BLUE_B
+        )
+        labeled = RoundedRectangle(
+            width=3, height=1.5, corner_radius=0.3, stroke_opacity=0.2
+        ).set_color(GREEN_B)
+        labeled_text = (
+            Text("Labeled Images", font_size=24)
+            .set_opacity(0.4)
+            .set_color_by_gradient(GREEN_A, GREEN)
+            .move_to(labeled)
+        )
+        unlabeled_group = unlabeled.next_to(dino, UL, buff=0.5)
+        labeled_group = (
+            VGroup(labeled, labeled_text).next_to(dino, UR, buff=0.5).shift(RIGHT)
+        )
+        self.playwl(
+            FadeIn(unlabeled_group, unlabeled_text),
+            FadeIn(labeled_group),
+            lag_ratio=0.3,
+        )
+
+        self.play(FadeOut(unlabeled_text, unlabeled, target_position=dino, scale=0.1))
+        self.playw(Wiggle(dino), Flash(dino.get_corner(UL)))
+
+
+class vision(Scene2D):
+    def construct(self):
+        model = (
+            Rectangle(width=3, height=1.7, color=YELLOW_B)
+            .set_fill(BLACK, opacity=0.85)
+            .set_z_index(1)
+        )
+        modelt = (
+            Text("Vision Model", font_size=28)
+            .set_color_by_gradient(YELLOW_A, YELLOW_C)
+            .move_to(model)
+            .set_z_index(2)
+        )
+        pretrain = (
+            Text("Pretrain", font="Noto Sans KR", font_size=36)
+            .set_color_by_gradient(BLUE_A, BLUE)
+            .next_to(model, DOWN)
+            .shift(LEFT * 2)
+        )
+        finetune = (
+            Text("Fine-tuning", font="Noto Sans KR", font_size=36)
+            .set_color_by_gradient(GREEN_A, GREEN)
+            .next_to(model, DOWN)
+            .shift(RIGHT * 2)
+        )
+        self.addw(model, modelt, pretrain, finetune)
+        dino = (
+            Text("DiNO", font_size=36, font="Noto Sans KR")
+            .next_to(pretrain, DOWN, buff=0.3)
+            .set_color_by_gradient(BLUE_A, BLUE)
+        )
+        self.playw(FadeIn(dino, shift=DOWN * 0.3))
+        self.play(FadeOut(dino, pretrain, target_position=model, scale=0.3))
+        self.playw(Wiggle(model), Flash(model.get_corner(UL)))
+
+        self.playw(Circumscribe(finetune))
+        self.playw(finetune.animate.scale(1.2).align_to(finetune, UL), run_time=3)
+
+        self.playw(FadeIn(pretrain, dino), FadeOut(finetune))
+
+        self.play(FadeOut(model, modelt, pretrain))
+        self.playw(dino.animate.move_to(ORIGIN))
+
+        nl = NumberLine(
+            x_range=[0, 6],
+            length=10,
+            color=GREY_B,
+            include_ticks=True,
+            include_numbers=False,
+        )
+        nl.ticks[0::2].set_opacity(0)
+        self.playwl(dino.animate.shift(UP * 2.5), FadeIn(nl))
+
+        v1 = Words("v1", font_size=28, font="Noto Sans KR", color=BLUE_D).next_to(
+            nl.ticks[1], UP, buff=0.1
+        )
+        v2 = Words("v2", font_size=28, font="Noto Sans KR", color=BLUE_C).next_to(
+            nl.ticks[3], UP, buff=0.1
+        )
+        v3 = Words("v3", font_size=28, font="Noto Sans KR", color=BLUE_B).next_to(
+            nl.ticks[5], UP, buff=0.1
+        )
+        year1 = Text("2021", font_size=20, color=BLUE_D, font="Noto Sans KR").next_to(nl.ticks[1], DOWN, buff=0.1)
+        year2 = Text("2023", font_size=20, color=BLUE_C, font="Noto Sans KR").next_to(nl.ticks[3], DOWN, buff=0.1)
+        year3 = Text("2025", font_size=20, color=BLUE_B, font="Noto Sans KR").next_to(nl.ticks[5], DOWN, buff=0.1)
+
+        param1 = Text("85M", font_size=20, color=YELLOW_D, font=MONO_FONT).next_to(v1, UP, buff=0.1)
+        param2 = Text("~1.1M", font_size=20, color=YELLOW_C, font=MONO_FONT).next_to(v2, UP, buff=0.1)
+        param3 = Text("7B", font_size=20, color=YELLOW_B, font=MONO_FONT).next_to(v3, UP, buff=0.1)
+        self.play(FadeIn(v1), run_time=0.5)
+        self.play(FadeIn(v2), run_time=0.5)
+        self.playw(FadeIn(v3), run_time=0.5)
+
+        self.play(FadeIn(year1), run_time=0.5)
+        self.play(FadeIn(year2), run_time=0.5)
+        self.playw(FadeIn(year3), run_time=0.5)
+
+        self.playwl(FadeIn(param1), FadeIn(param2), FadeIn(param3), lag_ratio=0.3)
