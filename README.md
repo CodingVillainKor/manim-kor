@@ -549,3 +549,11 @@ Why DiNO is important?
 $ cd src/dino1
 $ uv run manim main.py
 ```
+
+## 61. accelerate1
+accelerate basic tutorial
+[[YouTube link]](https://youtu.be/ArFofmwOqAM) <br />
+```bash
+$ cd src/accelerate1
+$ uv run manim main.py
+```
