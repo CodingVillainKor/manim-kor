@@ -557,3 +557,11 @@ accelerate basic tutorial
 $ cd src/accelerate1
 $ uv run manim main.py
 ```
+
+## 62. dino2
+dino = distillation + EMA model
+[[YouTube link]](https://youtu.be/cpULGintec8) <br />
+```bash
+$ cd src/dino2
+$ uv run manim main.py
+```
