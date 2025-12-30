@@ -14,3 +14,6 @@ media/
 test*/
 skipgit/
 CLAUDE.md
+
+# manim specific bug
+a.out
