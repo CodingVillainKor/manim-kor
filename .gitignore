@@ -9,6 +9,7 @@ build/
 
 # byproduct by manim
 media/
+MNIST/
 
 # Non-git projects
 test*/
