@@ -565,3 +565,11 @@ dino = distillation + EMA model
 $ cd src/dino2
 $ uv run manim main.py
 ```
+
+## 63. property
+property: readonly and computed attribute
+[[YouTube link]](https://youtu.be/qf0tRkf_QOk) <br />
+```bash
+$ cd src/property
+$ uv run manim main.py
+```
