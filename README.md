@@ -573,3 +573,11 @@ property: readonly and computed attribute
 $ cd src/property
 $ uv run manim main.py
 ```
+
+## 64. accelerate2
+Gradient accumulation for large batch size training
+[[YouTube link]](https://youtu.be/eB2ITlxAfyU) <br />
+```bash
+$ cd src/accelerate2
+$ uv run manim main.py
+```
