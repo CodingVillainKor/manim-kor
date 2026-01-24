@@ -581,3 +581,19 @@ Gradient accumulation for large batch size training
 $ cd src/accelerate2
 $ uv run manim main.py
 ```
+
+## 65. dino3
+Sharpening + centering in DINO
+[[YouTube link]](https://youtu.be/gB-RooLzqtQ) <br />
+```bash
+$ cd src/dino3
+$ uv run manim main.py
+```
+
+## 66. dino4
+Multi-crop in DINO
+[[YouTube link]](https://youtu.be/kbfEWnFo02g) <br />
+```bash
+$ cd src/dino4
+$ uv run manim main.py
+```
