@@ -22,6 +22,8 @@ def generate_project(project_name: str) -> None:
         return
     os.makedirs(prj_dirname, exist_ok=True)
 
+    os.system(f"ln -s ~/prj/manim-kor/.claude {prj_dirname}/.claude")
+
     # create main.py in the project directory
     main_script_path = os.path.join(prj_dirname, "main.py")
     with open(main_script_path, "w") as f:
