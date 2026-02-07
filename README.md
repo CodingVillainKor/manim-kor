@@ -605,3 +605,11 @@ DiNO v2, v3
 $ cd src/dino5
 $ uv run manim main.py
 ```
+
+## 68. git rebase
+git rebase vs merge
+[[YouTube link]](https://youtu.be/YzXABAUitvw) <br />
+```bash
+$ cd src/gitrebase
+$ uv run manim main.py
+```
