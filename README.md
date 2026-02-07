@@ -621,3 +621,11 @@ git remote for collaboration
 $ cd src/gitremote
 $ uv run manim main.py
 ```
+
+## 70. softmax trick
+subtract max for numerical stability in softmax
+[[YouTube link]](https://youtu.be/SAHGsTbZGyA) <br />
+```bash
+$ cd src/softmax
+$ uv run manim main.py
+```
