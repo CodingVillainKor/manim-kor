@@ -613,3 +613,11 @@ git rebase vs merge
 $ cd src/gitrebase
 $ uv run manim main.py
 ```
+
+## 69. git remote
+git remote for collaboration
+[[YouTube link]](https://youtu.be/U5qlg45peKA) <br />
+```bash
+$ cd src/gitremote
+$ uv run manim main.py
+```
