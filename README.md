@@ -597,3 +597,11 @@ Multi-crop in DINO
 $ cd src/dino4
 $ uv run manim main.py
 ```
+
+## 66. dino5
+DiNO v2, v3
+[[YouTube link]](https://youtu.be/lIolmVHgQFk) <br />
+```bash
+$ cd src/dino5
+$ uv run manim main.py
+```
