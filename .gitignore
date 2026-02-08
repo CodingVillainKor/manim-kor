@@ -15,7 +15,7 @@ MNIST/
 test*/
 skipgit/
 CLAUDE.md
-.claude/
+.claude
 
 # manim specific bug
 a.out
