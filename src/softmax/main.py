@@ -8,8 +8,8 @@ np.random.seed(41)
 
 class intro(Scene2D):
     def construct(self):
-        right = r"\frac{e^{x_i}}{`\sum_{j}` e^{x_j}`}"
-        softmax_formula = RaeTex(r"\text{softmax}(x_i) =" + f"`{right}", color=GREY_A)
+        right = r"\frac{e^{x_i}}{`\sum_{j}` e^{x_j}`}".split("`")
+        softmax_formula = MathTex(r"\text{softmax}(x_i) =", *right, color=GREY_A)
         self.addw(softmax_formula)
         self.wait()
 
@@ -18,9 +18,9 @@ class intro(Scene2D):
         self.play(softmax_formula[0].animate.shift(LEFT), run_time=0.5)
         self.playw(RWiggle(softmax_formula[1:]), run_time=3)
 
-        right_after = r"{e^{x_i `- C`} `\over` \sum_{j}` e^{x_j `- C`}}"
-        softmax_formula_after = RaeTex(
-            r"\text{softmax}(x_i) =`" + f"{right_after}", color=GREY_A
+        right_after = r"{e^{x_i `- C`} `\over` \sum_{j}` e^{x_j `- C`}}".split("`")
+        softmax_formula_after = MathTex(
+            r"\text{softmax}(x_i) =", *right_after, color=GREY_A
         ).align_to(softmax_formula, RIGHT)
         softmax_formula_after[1:].set_color(GREEN_B)
         softmax_formula_after["- C"].set_color(PURE_GREEN)
@@ -40,8 +40,8 @@ class intro(Scene2D):
 
 class softmax_intro(Scene3D):
     def construct(self):
-        sf = RaeTex(
-            r"\text{softmax}(x_i) `= `{`e^{x_i}` \over \sum_{j} e^{x_j}}", color=GREY_A
+        sf = MathTex(
+            *r"\text{softmax}(x_i) `= `{`e^{x_i}` \over \sum_{j} e^{x_j}}".split("`"), color=GREY_A
         )
         sf[2:].set_color(YELLOW_B)
         self.playwl(
@@ -80,7 +80,7 @@ class softmax_intro(Scene3D):
 
         def get_fx():
             r = (
-                RaeTex(r"e^{`" + f"{v.get_value():.2f}" + "`}")
+                MathTex(*r"e^{`" + f"{v.get_value():.2f}" + "`}".split("`"))
                 .set_color(RED)
                 .move_to(sf[r"e^{x_i}"])
                 .align_to(sf[r"e^{x_i}"], LEFT)
@@ -104,9 +104,10 @@ class softmax_intro(Scene3D):
             nump.c2p(v.get_value(), 2.71828 ** (v.get_value()))
         )
         dot.add_updater(dot_fn)
+        item = (r"e^{`" + f"{v.get_value():.2f}" + "`}").split("`")
         fx.add_updater(
             lambda m: m.become(
-                RaeTex(r"e^{`" + f"{v.get_value():.2f}" + "`}")
+                MathTex(*item)
                 .set_color(RED)
                 .move_to(sf[r"e^{x_i}"])
                 .align_to(sf[r"e^{x_i}"], LEFT)
@@ -126,8 +127,8 @@ class softmax_intro(Scene3D):
 
 class softmaxC(Scene3D):
     def construct(self):
-        sf = RaeTex(
-            r"\text{softmax}(x_i) `= `{`e^{x_i}` \over` \sum_{j}` e^{`x_j`}}",
+        sf = MathTex(
+            *r"\text{softmax}(x_i) `= `{`e^{x_i}` \over` \sum_{j}` e^{`x_j`}}".split("`"),
             color=GREY_A,
         ).shift(UP * 1.5)
         sf[2:].set_color(YELLOW_B)
@@ -170,8 +171,8 @@ class softmaxC(Scene3D):
 
         self.playw(RWiggle(ecs, amp=(0.1, 0.1, 0.1)), run_time=3)
 
-        sfa = RaeTex(
-            r"\text{softmax}(x_i) `= `{`e^{`x_i `- C`} `\over` \sum_{j}` e^{`x_j `- C`}}",
+        sfa = MathTex(
+            *r"\text{softmax}(x_i) `= `{`e^{`x_i `- C`} `\over` \sum_{j}` e^{`x_j `- C`}}".split("`"),
             color=GREY_A,
         ).shift(UP * 1.5)
         sfa[2:].set_color(YELLOW_B)
@@ -231,8 +232,8 @@ class comparison(Scene2D):
         exps1 = (
             VGroup(
                 *[
-                    RaeTex(
-                        "{" + f"e^`{{{num}}}`" + r"\over `" + sums1_str + r"}",
+                    MathTex(
+                        *("{" + f"e^{{{num}}}" + r"\over " + sums1_str + "}").split("`"),
                         font_size=28,
                         color=GREEN_A,
                     )
@@ -246,8 +247,8 @@ class comparison(Scene2D):
         exps2 = (
             VGroup(
                 *[
-                    RaeTex(
-                        "{" + f"e^`{{{num}}}`" + r"\over `" + sums2_str + r"}",
+                    MathTex(
+                        *("{" + f"e^{{{num}}}" + r"\over " + sums2_str + "}").split("`"),
                         font_size=28,
                         color=GREEN_A,
                     )
@@ -259,22 +260,22 @@ class comparison(Scene2D):
         )
         self.playw(FadeIn(exps1, shift=UP), FadeIn(exps2, shift=UP))
 
-        e101_open = RaeTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
+        e101_open = MathTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
             exps2[0][3], LEFT, buff=0.05
         )
-        e101_close = RaeTex(r")", font_size=28, color=RED_B).next_to(
+        e101_close = MathTex(r")", font_size=28, color=RED_B).next_to(
             exps2[0][-1], RIGHT, buff=0.05
         )
-        e102_open = RaeTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
+        e102_open = MathTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
             exps2[1][3], LEFT, buff=0.05
         )
-        e102_close = RaeTex(r")", font_size=28, color=RED_B).next_to(
+        e102_close = MathTex(r")", font_size=28, color=RED_B).next_to(
             exps2[1][-1], RIGHT, buff=0.05
         )
-        e103_open = RaeTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
+        e103_open = MathTex(r"e^{10} (", font_size=28, color=RED_B).next_to(
             exps2[2][3], LEFT, buff=0.05
         )
-        e103_close = RaeTex(r")", font_size=28, color=RED_B).next_to(
+        e103_close = MathTex(r")", font_size=28, color=RED_B).next_to(
             exps2[2][-1], RIGHT, buff=0.05
         )
         self.play(
