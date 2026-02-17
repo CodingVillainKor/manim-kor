@@ -629,3 +629,11 @@ subtract max for numerical stability in softmax
 $ cd src/softmax
 $ uv run manim main.py
 ```
+
+## 71. Flash attention
+Flash attention is faster attention implementation in SRAM
+[[YouTube link]](https://youtu.be/4Tw_ytMYHLI) <br />
+```bash
+$ cd src/flashattn
+$ uv run manim main.py
+```
